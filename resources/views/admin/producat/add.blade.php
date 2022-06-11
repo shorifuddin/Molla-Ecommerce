@@ -39,20 +39,35 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
            @enderror
           </div>
         </div>
+
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label col_form_label">User-Role<span class="req_star">*</span>:</label>
+            <label class="col-sm-3 col-form-label col_form_label">Product Category<span class="req_star">*</span>:</label>
             <div class="col-sm-4">
             <select class="form-control form_control" name="role">
-                <option>Product Category</option>
+                <option label="Product Category"></option>
                 <option value=""></option>
             </select>
             @error('brand_remaks')
             <span class="text-danger">{{ $message }}</span>
            @enderror
             </div>
-          </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label col_form_label">Product Brand<span class="req_star">*</span>:</label>
+            <div class="col-sm-4">
+            <select class="form-control form_control" name="role">
+                <option label="Select Brand"></option>
+                <option value=""></option>
+            </select>
+            @error('brand_remaks')
+            <span class="text-danger">{{ $message }}</span>
+           @enderror
+            </div>
+        </div>
+
           <div class="form-group row ">
-            <label class="col-sm-3 col-form-label col_form_label">Brand Remaks :</label>
+            <label class="col-sm-3 col-form-label col_form_label">Product Price :</label>
             <div class="col-sm-7">
               <input type="text" class="form-control form_control" name="brand_remaks" value="{{ old('brand_remaks') }}">
               @error('brand_remaks')
@@ -60,8 +75,9 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
              @enderror
             </div>
           </div>
+
         <div class="form-group row ">
-          <label class="col-sm-3 col-form-label col_form_label">Brand Remaks :</label>
+          <label class="col-sm-3 col-form-label col_form_label">Product Discount Price :</label>
           <div class="col-sm-7">
             <input type="text" class="form-control form_control" name="brand_remaks" value="{{ old('brand_remaks') }}">
             @error('brand_remaks')
@@ -69,6 +85,27 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
            @enderror
           </div>
         </div>
+
+        <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Order :</label>
+            <div class="col-sm-7">
+              <input type="number" class="form-control form_control" name="brand_remaks" value="{{ old('brand_remaks') }}">
+              @error('brand_remaks')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Quantity :</label>
+            <div class="col-sm-7">
+              <input type="number" min="1" class="form-control form_control" name="brand_remaks" value="{{ old('brand_remaks') }}">
+              @error('brand_remaks')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
         <div class="form-group row">
           <label class="col-sm-3 col-form-label col_form_label">Brand Photo <span class="req_star">*</span>:</label>
           <div class="col-sm-7">
