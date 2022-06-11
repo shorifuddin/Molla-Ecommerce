@@ -106,8 +106,28 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
             </div>
         </div>
 
+        <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Unit :</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control form_control" name="brand_remaks" value="{{ old('brand_remaks') }}">
+              @error('brand_remaks')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Feature :</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control form_control" name="brand_remaks" value="{{ old('brand_remaks') }}">
+              @error('brand_remaks')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
         <div class="form-group row">
-          <label class="col-sm-3 col-form-label col_form_label">Brand Photo <span class="req_star">*</span>:</label>
+          <label class="col-sm-3 col-form-label col_form_label"> Product Image<span class="req_star">*</span>:</label>
           <div class="col-sm-7">
             <input type="file" name="brand_image" value="{{ old('brand_image') }}">
             @error('brand_remaks')
@@ -115,10 +135,43 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
            @enderror
           </div>
         </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label col_form_label"> Product Gallery Image<span class="req_star">*</span>:</label>
+            <div class="col-sm-7">
+              <input type="file" name="brand_image" value="{{ old('brand_image') }}">
+              @error('brand_remaks')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Details :</label>
+            <div class="col-sm-7">
+                <textarea class="form-control form_control" name="" id="" ></textarea>
+              {{-- <input type="text" class="form-control form_control" name="brand_remaks" value="{{ old('brand_remaks') }}"> --}}
+            @error('brand_remaks')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Description :</label>
+            <div class="col-sm-7">
+                <textarea class="form-control form_control" name="" id="" ></textarea>
+              {{-- <input type="text" class="form-control form_control" name="brand_remaks" value="{{ old('brand_remaks') }}"> --}}
+            @error('brand_remaks')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
       </div>
 
     <div class="card-footer bg-secondary card_footer">
-      <button type="submit" class="btn btn-dark">Brand UPLOAD</button>
+      <button type="submit" class="btn btn-dark">Product UPLOAD</button>
     </div>
 
     </div>
