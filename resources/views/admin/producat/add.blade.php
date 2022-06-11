@@ -34,21 +34,21 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
           <label class="col-sm-3 col-form-label col_form_label">Product Name <span class="req_star">*</span>:</label>
           <div class="col-sm-7">
             <input type="text" class="form-control form_control" name="brand_name" value="{{ old('brand_name') }}">
-            @if ($errors->has('brand_name'))
-               <strong class="invalid-feedback">{{ $errors->first('brand_name') }}</strong>
-            @endif
+            @error('brand_remaks')
+            <span class="text-danger">{{ $message }}</span>
+           @enderror
           </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-3 col-form-label col_form_label">User-Role<span class="req_star">*</span>:</label>
             <div class="col-sm-4">
-              <select class="form-control form_control" name="role">
-                <option>Choose User Role</option>
-                @foreach ($roledata as $data)
-                <option value="{{ $data->role_id }}">{{ $data->role_name }}</option>
-                @endforeach
-
-              </select>
+            <select class="form-control form_control" name="role">
+                <option>Product Category</option>
+                <option value=""></option>
+            </select>
+            @error('brand_remaks')
+            <span class="text-danger">{{ $message }}</span>
+           @enderror
             </div>
           </div>
           <div class="form-group row ">
