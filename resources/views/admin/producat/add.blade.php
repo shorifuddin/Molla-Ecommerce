@@ -174,7 +174,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
       <button type="submit" class="btn btn-dark">Product UPLOAD</button>
     </div>
 
-    </div>
+  </div>
   </form>
   </div>
 </div>
