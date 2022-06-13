@@ -4,22 +4,19 @@
       <meta charset="utf-8"/>
       <title>Admin-Dashboard</title>
       <link rel="shortcut icon" href="{{asset('content/admin')}}/assets/images/favicon_1.ico">
-       <!-- DataTables -->
-       <link href="{{asset('content/admin')}}/assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-       <link href="{{asset('content/admin')}}/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-       <link href="{{asset('content/admin')}}/assets/plugins/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-       <link href="{{asset('content/admin')}}/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-       <link href="{{asset('content/admin')}}/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
-       <link href="{{asset('content/admin')}}/assets/plugins/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-      <link href="{{asset('content/admin')}}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-      <link href="{{asset('content/admin')}}/assets/css/icons.css" rel="stylesheet" type="text/css"/>
-      <link href="{{asset('content/admin')}}/assets/css/style.css" rel="stylesheet" type="text/css"/>
-      <link href="{{asset('content/admin')}}/assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css">
-      <link href="{{asset('content/admin')}}/assets/css/coustom.css" rel="stylesheet" type="text/css"/>
-      <script src="{{asset('content/admin')}}/assets/js/jquery.min.js"></script>
-      <script src="{{asset('content/admin')}}/assets/js/sweetalert2.min.js"></script>
-      <script src="{{asset('content/admin')}}/assets/js/modernizr.min.js"></script>
+      <link href="{{asset('content/admin')}}/plugins/sweetalert2/sweetalert2.css" rel="stylesheet" type="text/css">
+
+        <!-- Custom Files -->
+        <link href="{{asset('content/admin')}}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{asset('content/admin')}}/assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="{{asset('content/admin')}}/assets/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="{{asset('content/admin')}}/assets/css/coustom.css" rel="stylesheet" type="text/css" />
+
+        @yield('couston_css')
+
+        <script src="{{asset('content/admin')}}/assets/js/modernizr.min.js"></script>
+
    </head>
    <body class="fixed-left">
       <div id="wrapper">
@@ -155,9 +152,9 @@
                         @if(Auth::user()->role=='1' )
                            <li><a href="{{url('dashboard/product/add')}}">ADD Category</a></li>
                         @endif
-                           <li><a href="">ALL Category</a></li>
+                           <li><a href="{{url('dashboard/product/all')}}">ALL Category</a></li>
                          @if(Auth::user()->role=='1' )
-                           <li><a href="">Deleted Category</a></li>
+                           <li><a href="{{url('dashboard/product/restore')}}">Deleted Category</a></li>
                         @endif
                         </ul>
                      </li>
@@ -281,57 +278,68 @@
          </div>
 
       </div>
-      <script>var resizefunc=[]; </script>
-
-      <script src="{{asset('content/admin')}}/assets/js/bootstrap.bundle.min.js"></script>
-      <script src="{{asset('content/admin')}}/assets/js/detect.js"></script>
-       <script src="{{asset('content/admin')}}/assets/js/fastclick.js"></script>
-       <script src="{{asset('content/admin')}}/assets/js/jquery.slimscroll.js"></script>
-       <script src="{{asset('content/admin')}}/assets/js/jquery.blockUI.js"></script>
-       <script src="{{asset('content/admin')}}/assets/js/waves.js"></script>
-       <script src="{{asset('content/admin')}}/assets/js/wow.min.js"></script>
-       <script src="{{asset('content/admin')}}/assets/js/jquery.nicescroll.js"></script>
-       <script src="{{asset('content/admin')}}/assets/js/jquery.scrollTo.min.js"></script>
-        <script src="{{asset('content/admin')}}/assets/pages/jquery.todo.js"></script>
-        <script src="{{asset('content/admin')}}/assets/pages/jquery.chat.js"></script>
-         <script src="{{asset('content/admin')}}/assets/pages/jquery.dashboard.js"></script>
-         <script src="{{asset('content/admin')}}/assets/js/jquery.app.js"></script>
-
-          <!-- Datatables-->
-        <!-- Required datatable js-->
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-        <!-- Buttons examples -->
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/dataTables.buttons.min.js"></script>
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/buttons.bootstrap4.min.js"></script>
-
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/jszip.min.js"></script>
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/pdfmake.min.js"></script>
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/vfs_fonts.js"></script>
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/buttons.html5.min.js"></script>
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/buttons.print.min.js"></script>
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/dataTables.fixedHeader.min.js"></script>
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/dataTables.keyTable.min.js"></script>
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/dataTables.scroller.min.js"></script>
-
-        <!-- Responsive examples -->
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/dataTables.responsive.min.js"></script>
-        <script src="{{asset('content/admin')}}/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
-
-        <!-- Datatable init js -->
-        <script src="{{asset('content/admin')}}/assets/js/datatables.init.js"></script>
-
-        {{-- <script src="{{asset('content/admin')}}/assets/js/jquery.app.js"></script> --}}
 
         <script>
-            $(document).ready(function() {
-                $('#datatable').dataTable();
-                $('#datatable-keytable').DataTable( { keys: true } );
-                $('#datatable-responsive').DataTable();
-                $('#datatable-scroller').DataTable( { ajax: "{{asset('content/admin')}}/assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
-                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
-            } );
-            TableManageButtons.init();
+            var resizefunc = [];
+        </script>
+
+        <!-- jQuery  -->
+        <script src="{{asset('content/admin')}}/assets/js/jquery.min.js"></script>
+        <script src="{{asset('content/admin')}}/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="{{asset('content/admin')}}/assets/js/detect.js"></script>
+        <script src="{{asset('content/admin')}}/assets/js/fastclick.js"></script>
+        <script src="{{asset('content/admin')}}/assets/js/jquery.slimscroll.js"></script>
+        <script src="{{asset('content/admin')}}/assets/js/jquery.blockUI.js"></script>
+        <script src="{{asset('content/admin')}}/assets/js/waves.js"></script>
+        <script src="{{asset('content/admin')}}/assets/js/wow.min.js"></script>
+        <script src="{{asset('content/admin')}}/assets/js/jquery.nicescroll.js"></script>
+        <script src="{{asset('content/admin')}}/assets/js/jquery.scrollTo.min.js"></script>
+
+        <!-- jQuery -->
+        <script src="{{asset('content/admin')}}/plugins/moment/moment.min.js"></script>
+
+        <!-- Counter js  -->
+        <script src="{{asset('content/admin')}}/plugins/waypoints/lib/jquery.waypoints.js"></script>
+        <script src="{{asset('content/admin')}}/plugins/counterup/jquery.counterup.min.js"></script>
+
+        <!-- sweet alerts -->
+        <script src="{{asset('content/admin')}}/plugins/sweetalert2/sweetalert2.js"></script>
+
+        <!-- flot Chart -->
+        <script src="{{asset('content/admin')}}/plugins/flot-chart/jquery.flot.min.js"></script>
+        <script src="{{asset('content/admin')}}/plugins/flot-chart/jquery.flot.time.js"></script>
+        <script src="{{asset('content/admin')}}/plugins/flot-chart/jquery.flot.tooltip.min.js"></script>
+        <script src="{{asset('content/admin')}}/plugins/flot-chart/jquery.flot.resize.js"></script>
+        <script src="{{asset('content/admin')}}/plugins/flot-chart/jquery.flot.pie.js"></script>
+        <script src="{{asset('content/admin')}}/plugins/flot-chart/jquery.flot.selection.js"></script>
+        <script src="{{asset('content/admin')}}/plugins/flot-chart/jquery.flot.stack.js"></script>
+        <script src="{{asset('content/admin')}}/plugins/flot-chart/jquery.flot.crosshair.js"></script>
+
+        <!-- Todoapp -->
+        <script src="{{asset('content/admin')}}/assets/pages/jquery.todo.js"></script>
+
+        <!-- jQuery  -->
+        <script src="{{asset('content/admin')}}/assets/pages/jquery.chat.js"></script>
+
+        <!-- Dashboard js  -->
+        <script src="{{asset('content/admin')}}/assets/pages/jquery.dashboard.js"></script>
+
+        <!-- App js  -->
+        <script src="{{asset('content/admin')}}/assets/js/jquery.app.js"></script>
+
+        @yield('couston_jquery')
+
+        <script>
+            /* ==============================================
+            Counter Up
+            =============================================== */
+            jQuery(document).ready(function($) {
+                $('.counter').counterUp({
+                    delay: 100,
+                    time: 1200
+                });
+            });
+
         </script>
    </body>
 </html>

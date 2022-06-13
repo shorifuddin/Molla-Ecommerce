@@ -134,7 +134,7 @@ Route::POST('social/update', [ManageController::class, 'social_update'])->name('
 // <<===== PRODUCT ROUTE  LIST ======>>
 Route::get('product/add', [ProductController::class, 'add'])->name('product.add');
 Route::POST('product/submit', [ProductController::class, 'insert'])->name('product.insert');
-// Route::get('product/all', [ProductController::class, 'all'])->name('product.all');
+Route::get('product/all', [ProductController::class, 'all'])->name('product.all');
 // Route::get('product/restore', [ProductController::class, 'restore'])->name('product.restore');
 
 

@@ -1,4 +1,13 @@
 @extends('layouts.admin')
+@section('couston_css')
+<!-- DataTables -->
+<link href="{{asset('content/admin')}}/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('content/admin')}}/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('content/admin')}}/plugins/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('content/admin')}}/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('content/admin')}}/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+<link href="{{asset('content/admin')}}/plugins/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+@endsection
 @section('content')
 
 <div class="row">
@@ -23,31 +32,31 @@
 									<th>Manage</th>
 								</tr>
 							</thead>
-							<tbody> 
+							<tbody>
                					 @foreach ($alldata as $data)
 								<tr>
 									<td>{{ $data->partner_name }}</td>
 									<td>{{ $data->partner_url}}</td>
 									<td>{{ $data->creatorinfo->name }}</td>
-									<td> 
-										@if (!empty($data->partner_logo)) 
-										<img class="img-fluid img" src="{{ asset('upload/partner/'.$data->partner_logo) }}"> 
-										@else 
-										<img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}"> 
-										@endif 
+									<td>
+										@if (!empty($data->partner_logo))
+										<img class="img-fluid img" src="{{ asset('upload/partner/'.$data->partner_logo) }}">
+										@else
+										<img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}">
+										@endif
                   					</td>
-									<td> 
+									<td>
 										<a href="{{ url('/dashboard/partner/view/'.$data->partner_id) }}">
-											<i class="md md-remove-red-eye colors"></i> </a> 
-										@if(Auth::user()->role=='1' ) 
+											<i class="md md-remove-red-eye colors"></i> </a>
+										@if(Auth::user()->role=='1' )
 										<a href="{{ url('/dashboard/partner/edit/'.$data->partner_id) }}">
-											<i class="md md-border-color colors"></i></a> 
+											<i class="md md-border-color colors"></i></a>
 										<a href="{{ url('/dashboard/partner/softdelete/'.$data->partner_id) }}">
-											<i class="md md-delete colors"></i></a> 
-										@endif 
+											<i class="md md-delete colors"></i></a>
+										@endif
                   					</td>
-								</tr> 
-                				@endforeach 
+								</tr>
+                				@endforeach
               				</tbody>
 						</table>
 					</div>
@@ -59,5 +68,39 @@
 		</div>
 	</div>
 </div>
+
+@endsection
+
+@section('couston_jquery')
+
+<!-- Required datatable js-->
+<script src="{{asset('content/admin')}}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{asset('content/admin')}}/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- Buttons examples -->
+<script src="{{asset('content/admin')}}/plugins/datatables/dataTables.buttons.min.js"></script>
+<script src="{{asset('content/admin')}}/plugins/datatables/buttons.bootstrap4.min.js"></script>
+
+<script src="{{asset('content/admin')}}/plugins/datatables/jszip.min.js"></script>
+<script src="{{asset('content/admin')}}/plugins/datatables/pdfmake.min.js"></script>
+<script src="{{asset('content/admin')}}/plugins/datatables/vfs_fonts.js"></script>
+<script src="{{asset('content/admin')}}/plugins/datatables/buttons.html5.min.js"></script>
+<script src="{{asset('content/admin')}}/plugins/datatables/buttons.print.min.js"></script>
+<script src="{{asset('content/admin')}}/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+<script src="{{asset('content/admin')}}/plugins/datatables/dataTables.keyTable.min.js"></script>
+<script src="{{asset('content/admin')}}/plugins/datatables/dataTables.scroller.min.js"></script>
+
+<!-- Responsive examples -->
+<script src="{{asset('content/admin')}}/plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="{{asset('content/admin')}}/plugins/datatables/responsive.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#datatable').dataTable();
+        $('#datatable-keytable').DataTable( { keys: true } );
+        $('#datatable-responsive').DataTable();
+        $('#datatable-scroller').DataTable( { ajax: "{{asset('content/admin')}}/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+        var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+    } );
+    TableManageButtons.init();
+</script>
 
 @endsection

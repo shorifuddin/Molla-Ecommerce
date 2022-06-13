@@ -1,4 +1,12 @@
 @extends('layouts.admin')
+
+@section('couston_css')
+<!--bootstrap-wysihtml5-->
+<link rel="stylesheet" type="text/css" href="{{asset('content/admin')}}/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css">
+<link href="{{asset('content/admin')}}/plugins/summernote/summernote-bs4.css" rel="stylesheet">
+
+@endsection
+
 @section('content')
 
 @if (Session::has('success'))
@@ -149,7 +157,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
         <div class="form-group row ">
             <label class="col-sm-3 col-form-label col_form_label">Product Details :</label>
             <div class="col-sm-7">
-                <textarea class="form-control form_control" name="product_detils" id="" value="{{ old('product_detils') }}"></textarea>
+                <textarea class="summernote form-control form_control" name="product_detils" id="" value="{{ old('product_detils') }}"></textarea>
               {{-- <input type="text" class="form-control form_control" name="brand_remaks" value="{{ old('brand_remaks') }}"> --}}
             @error('product_detils')
               <span class="text-danger">{{ $message }}</span>
@@ -160,7 +168,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
         <div class="form-group row ">
             <label class="col-sm-3 col-form-label col_form_label">Product Description :</label>
             <div class="col-sm-7">
-                <textarea class="form-control form_control" name="product_description" value="{{ old('product_description') }}" id="" ></textarea>
+                <textarea class="summernote form-control form_control" name="product_description" value="{{ old('product_description') }}" id="" ></textarea>
               {{-- <input type="text" class="form-control form_control" name="brand_remaks" value="{{ old('brand_remaks') }}"> --}}
             @error('product_description')
               <span class="text-danger">{{ $message }}</span>
@@ -178,4 +186,31 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
   </form>
   </div>
 </div>
+@endsection
+
+@section('couston_jquery')
+<script src="{{asset('content/admin')}}/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+<script src="{{asset('content/admin')}}/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+
+<!--form validation init-->
+<script src="{{asset('content/admin')}}/plugins/summernote/summernote-bs4.js"></script>
+
+<script>
+
+    jQuery(document).ready(function(){
+        $('.wysihtml5').wysihtml5();
+
+        $('.summernote').summernote({
+            height: 200,                 // set editor height
+
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+
+            focus: true                 // set focus to editable area after initializing summernote
+        });
+
+    });
+</script>
+
+
 @endsection

@@ -15,4 +15,8 @@ class ProductController extends Controller{
         return view('admin.producat.add');
     }
 
+    public function all(){
+        return view('admin.producat.all');
+    }
+
 }
