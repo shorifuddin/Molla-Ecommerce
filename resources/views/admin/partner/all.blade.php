@@ -45,7 +45,7 @@
 										<img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}">
 										@endif
                   					</td>
-									<td>
+									<td class="text-center">
 										<a href="{{ url('/dashboard/partner/view/'.$data->partner_id) }}">
 											<i class="md md-remove-red-eye colors"></i> </a>
 										@if(Auth::user()->role=='1' )
@@ -54,6 +54,18 @@
 										<a href="{{ url('/dashboard/partner/softdelete/'.$data->partner_id) }}">
 											<i class="md md-delete colors"></i></a>
 										@endif
+                                        {{-- <div class="btn-group">
+                                            <button type="button" class="btn btn-secondary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" class="dropdown-item">Action</a></li>
+                                                <li><a href="#" class="dropdown-item">Another action</a></li>
+                                                <li><a href="#" class="dropdown-item">Something else here</a></li>
+                                                <li class="dropdown-divider"></li>
+                                                <li><a href="#" class="dropdown-item">Separated link</a></li>
+                                            </ul>
+                                        </div> --}}
                   					</td>
 								</tr>
                 				@endforeach

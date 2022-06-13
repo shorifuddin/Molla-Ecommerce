@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Partner;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-use Auth;
-use Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 use Image;
 
 class PartnerController extends Controller{
-    
+
     public function __construct(){
         $this->middleware('auth');
     }
@@ -46,7 +47,7 @@ class PartnerController extends Controller{
             $pic=$request->file('partner_logo');
             $imgname='Partnerimg-' . time().'-'.'.'. $pic->getClientOriginalExtension();
             Image::make($pic)->save('upload/partner/'.$imgname);
- 
+
             Partner::where('partner_id', $insert)->update([
                 'partner_logo'=>$imgname,
             ]);
@@ -76,23 +77,22 @@ class PartnerController extends Controller{
         return view('admin.partner.edit',compact('data'));
     }
 
-    public function update(Request $request, $id){   
-        $validated = $request->validate([
+    public function update(Request $request, $id){
+        $this->validate($request,[
             'partner_name' => 'required|max:255',
             'partner_url' => 'required|max:255',
         ],[
             'partner_url.required'=>'Fill The Remaks',
         ]);
 
-        $id = $request->partner_id;
         $slug = $request->partner_slug;
         $partner = Partner::where('partner_id', $id)->where('partner_slug', $slug)->firstOrFail();
-        
+
+        // Update Image
         if ($request->hasFile('partner_logo')) {
             if (File::exists('upload/partner/'.$partner->partner_logo)) {
                 File::delete('upload/partner/'.$partner->partner_logo);
             }
-            
            $pic = $request->file('partner_logo');
            $imagename = 'partner'. time() . '.' .$pic->getClientOriginalExtension();
            Image::make($pic)->resize(150, 150)->save('upload/partner/'.$imagename);
@@ -100,7 +100,7 @@ class PartnerController extends Controller{
             $imagename = $partner->partner_logo;
         }
 
-        $update=Partner::where('partner_id',$id)->update([
+        $update = Partner::where('partner_id',$id)->update([
             'partner_name' => $request['partner_name'],
             'partner_slug' => Str::slug($request->partner_name, '-'),
             'partner_url' => $request['partner_url'],
@@ -119,7 +119,7 @@ class PartnerController extends Controller{
     }
 
     public function softdelete($id){
-        $softdelete=Partner::where('partner_status',1)->where('partner_id',$id)->update([
+        $softdelete = Partner::where('partner_status',1)->where('partner_id',$id)->update([
             'partner_status'=> 0,
         ]);
         if($softdelete){
@@ -132,12 +132,12 @@ class PartnerController extends Controller{
     }
 
     public function restore(){
-        $alldata=Partner::where('partner_status',0)->orderBy('partner_id','ASC')->get();
+        $alldata = Partner::where('partner_status',0)->orderBy('partner_id','ASC')->get();
         return view('admin.partner.restore',compact('alldata'));
     }
 
     public function restoredata($id){
-        $restore=Partner::where('partner_status',0)->where('partner_id',$id)->update([
+        $restore = Partner::where('partner_status',0)->where('partner_id',$id)->update([
             'partner_status'=> 1,
         ]);
         if($restore){

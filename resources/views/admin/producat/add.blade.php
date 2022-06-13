@@ -47,13 +47,17 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
            @enderror
           </div>
         </div>
-
+        @php
+            $categories = App\Models\Prodcategory::where('pro_cate_status', 1)->get();
+        @endphp
         <div class="form-group row">
             <label class="col-sm-3 col-form-label col_form_label">Product Category<span class="req_star">*</span>:</label>
             <div class="col-sm-4">
             <select class="form-control form_control" name="pro_category_id">
-                <option label="Product Category"></option>
-                <option value=""></option>
+                <option disabled selected label="Product Category"></option>
+                @foreach ($categories as $data)
+                <option value="{{ $data['pro_cate_id'] }}">{{ $data['pro_cate_name'] }}</option>
+                @endforeach
             </select>
             @error('pro_category_id')
             <span class="text-danger">{{ $message }}</span>
@@ -147,7 +151,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
         <div class="form-group row">
             <label class="col-sm-3 col-form-label col_form_label"> Product Gallery Image<span class="req_star">*</span>:</label>
             <div class="col-sm-7">
-              <input type="file" name="product_gallery" value="{{ old('product_gallery') }}">
+              <input multiple type="file" name="product_gallery" value="{{ old('product_gallery') }}">
               @error('product_gallery')
               <span class="text-danger">{{ $message }}</span>
              @enderror

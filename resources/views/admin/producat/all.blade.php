@@ -1,13 +1,4 @@
 @extends('layouts.admin')
-@section('couston_css')
-<!-- DataTables -->
-<link href="{{asset('content/admin')}}/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('content/admin')}}/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('content/admin')}}/plugins/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('content/admin')}}/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('content/admin')}}/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
-<link href="{{asset('content/admin')}}/plugins/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-@endsection
 @section('content')
 
 <div class="row">
@@ -15,8 +6,8 @@
 		<div class="card">
 			<div class="card-header bg-secondary card_header">
 				<div class="row">
-					<div class="col-md-8 card_header_title"> <i class="md md-add-circle "></i> All Brand Information </div>
-					<div class="col-md-4 card_header_btn "> <a href="{{ url('/dashboard/brand/add') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> Add Banner</a> </div>
+					<div class="col-md-8 card_header_title"> <i class="md md-add-circle "></i> All Product Information </div>
+					<div class="col-md-4 card_header_btn "> <a href="{{ url('/dashboard/product/add') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> Add Product</a> </div>
 				</div>
 			</div>
 			<div class="card-body">
@@ -73,17 +64,19 @@
                   					</td>
 
 									<td>
-										<a href="{{ url('/dashboard/brand/view/'.$data->product_id) }}">
+										{{-- <a href="{{ url('/dashboard/brand/view/'.$data->product_id) }}">
 											<i class="md md-remove-red-eye colors"></i> </a>
 										@if(Auth::user()->role=='1' )
 										<a href="{{ url('/dashboard/brand/edit/'.$data->product_id) }}">
 											<i class="md md-border-color colors"></i></a>
-										{{-- <a href="{{ url('/dashboard/brand/softdelete/'.$data->brand_id) }}">
-											<i class="md md-delete colors"></i></a>  --}}
+										<!-- <a href="{{ url('/dashboard/brand/softdelete/'.$data->brand_id) }}">
+											<i class="md md-delete colors"></i></a>  -->
 											<button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Delete</button>
 
-										@endif
+										@endif --}}
+
                   					</td>
+
 								</tr>
 								{{-- Modal --}}
 								<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
@@ -160,4 +153,14 @@
     TableManageButtons.init();
 </script>
 
+@endsection
+
+@section('couston_css')
+<!-- DataTables -->
+<link href="{{asset('content/admin')}}/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('content/admin')}}/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('content/admin')}}/plugins/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('content/admin')}}/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('content/admin')}}/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+<link href="{{asset('content/admin')}}/plugins/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 @endsection
