@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model{
 
     public function category(){
-        return $this->belongsTo(Prodcategory::class, 'product_id','pro_cat_id');
+        return $this->belongsTo(Prodcategory::class, 'pro_category_id','pro_cate_id');
     }
 
     public function brand(){

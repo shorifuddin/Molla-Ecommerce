@@ -27,7 +27,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
             <a href="{{ url('/dashboard/brand/all') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All Brand</a>
            </div>
           </div>
-      </div>  
+      </div>
 
       <div class="card-body">
         <div class="form-group row">
@@ -42,11 +42,11 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
         <div class="form-group row ">
           <label class="col-sm-3 col-form-label col_form_label">Product Category Parent :</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control form_control" name="pro_cate_parent" value="{{ old('pro_cate_parent') }}">
+            <input type="number" class="form-control form_control" name="pro_cate_parent" value="{{ old('pro_cate_parent') }}">
             <strong class="invalid-feedback">
               @error('pro_cate_parent')
               {{ $message}}
-          @enderror 
+          @enderror
             </strong>
           </div>
         </div>
@@ -78,6 +78,6 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
 
     </div>
   </form>
-  </div> 
-</div>  
+  </div>
+</div>
 @endsection

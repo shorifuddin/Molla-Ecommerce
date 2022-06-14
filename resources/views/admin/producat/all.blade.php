@@ -17,18 +17,10 @@
 							<thead class="thead-dark">
 								<tr>
 									<th>Product Category</th>
-									<th>Brand Name</th>
 									<th>Product Name</th>
 									<th>Product Price</th>
-									<th>Product Discount Price</th>
-									<th>Product Quantity</th>
-									<th>Product Unit</th>
-									<th>Product Detils</th>
-									<th>Product Description</th>
-                                    <th>Product Order</th>
-									<th>Product Feature</th>
+									<th>Product Order</th>
 									<th>Product Image</th>
-									<th>Product Gallery</th>
 									<th>Manage</th>
 								</tr>
 							</thead>
@@ -36,17 +28,9 @@
                 			@foreach ($alldata as $data)
 								<tr>
 									<td>{{ $data->category->pro_cate_name}}</td>
-									<td>{{ $data->brand->brand_name}}</td>
 									<td>{{ $data->product_name}}</td>
 									<td>{{ $data->product_price}}</td>
-									<td>{{ $data->product_discount_price}}</td>
-									<td>{{ $data->product_quantity}}</td>
-									<td>{{ $data->product_unit}}</td>
-									<td>{{ Str::words($data->product_detils,5)}}</td>
-									<td>{{ Str::words($data->product_description,5)}}</td>
 									<td>{{ $data->product_order }}</td>
-									<td>{{ $data->product_feature }}</td>
-
 									<td>
 										@if (!empty($data->product_image))
 										<img class="img-fluid img" src="{{ asset('upload/product/'.$data->product_image) }}">
@@ -54,26 +38,17 @@
 										<img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}">
 										@endif
                   					</td>
-
-                                    <td>
-										@if (!empty($data->product_gallery))
-										<img class="img-fluid img" src="{{ asset('upload/product/'.$data->product_gallery) }}">
-										@else
-										<img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}">
-										@endif
-                  					</td>
-
 									<td>
-										{{-- <a href="{{ url('/dashboard/brand/view/'.$data->product_id) }}">
-											<i class="md md-remove-red-eye colors"></i> </a>
-										@if(Auth::user()->role=='1' )
-										<a href="{{ url('/dashboard/brand/edit/'.$data->product_id) }}">
-											<i class="md md-border-color colors"></i></a>
-										<!-- <a href="{{ url('/dashboard/brand/softdelete/'.$data->brand_id) }}">
-											<i class="md md-delete colors"></i></a>  -->
-											<button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Delete</button>
-
-										@endif --}}
+										<div class="btn-group">
+                                            <button type="button" class="btn btn-secondary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Manage
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" class="dropdown-item">View</a></li>
+                                                <li><a href="#" class="dropdown-item">Edit</a></li>
+                                                <li><a type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                                            </ul>
+                                        </div>
 
                   					</td>
 

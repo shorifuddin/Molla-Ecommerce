@@ -64,13 +64,17 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
            @enderror
             </div>
         </div>
-
+        @php
+        $brand = App\Models\Brand::where('brand_status', 1)->get();
+        @endphp
         <div class="form-group row">
             <label class="col-sm-3 col-form-label col_form_label">Product Brand<span class="req_star">*</span>:</label>
             <div class="col-sm-4">
             <select class="form-control form_control" name="brand_id">
-                <option label="Select Brand"></option>
-                <option value=""></option>
+                <option disabled selected label="Select Brand"></option>
+                @foreach ($brand as $data)
+                <option value="{{ $data['brand_id'] }}">{{ $data['brand_name'] }}</option>
+                @endforeach
             </select>
             @error('brand_id')
             <span class="text-danger">{{ $message }}</span>
@@ -131,7 +135,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
         <div class="form-group row ">
             <label class="col-sm-3 col-form-label col_form_label">Product Feature :</label>
             <div class="col-sm-7">
-              <input type="text" class="form-control form_control" name="product_feature" value="{{ old('product_feature') }}">
+              <input type="number" class="form-control form_control" name="product_feature" value="{{ old('product_feature') }}">
               @error('product_feature')
               <span class="text-danger">{{ $message }}</span>
              @enderror
@@ -151,7 +155,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
         <div class="form-group row">
             <label class="col-sm-3 col-form-label col_form_label"> Product Gallery Image<span class="req_star">*</span>:</label>
             <div class="col-sm-7">
-              <input multiple type="file" name="product_gallery" value="{{ old('product_gallery') }}">
+              <input multiple type="file" name="product_gallery[]" value="{{ old('product_gallery') }}">
               @error('product_gallery')
               <span class="text-danger">{{ $message }}</span>
              @enderror
@@ -162,7 +166,6 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
             <label class="col-sm-3 col-form-label col_form_label">Product Details :</label>
             <div class="col-sm-7">
                 <textarea class="summernote form-control form_control" name="product_detils" id="" value="{{ old('product_detils') }}"></textarea>
-              {{-- <input type="text" class="form-control form_control" name="brand_remaks" value="{{ old('brand_remaks') }}"> --}}
             @error('product_detils')
               <span class="text-danger">{{ $message }}</span>
              @enderror
@@ -173,7 +176,6 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
             <label class="col-sm-3 col-form-label col_form_label">Product Description :</label>
             <div class="col-sm-7">
                 <textarea class="summernote form-control form_control" name="product_description" value="{{ old('product_description') }}" id="" ></textarea>
-              {{-- <input type="text" class="form-control form_control" name="brand_remaks" value="{{ old('brand_remaks') }}"> --}}
             @error('product_description')
               <span class="text-danger">{{ $message }}</span>
              @enderror
