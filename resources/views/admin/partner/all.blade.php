@@ -46,28 +46,50 @@
 										@endif
                   					</td>
 									<td class="text-center">
-										<a href="{{ url('/dashboard/partner/view/'.$data->partner_id) }}">
+										{{-- <a href="{{ url('/dashboard/partner/view/'.$data->partner_id) }}">
 											<i class="md md-remove-red-eye colors"></i> </a>
 										@if(Auth::user()->role=='1' )
 										<a href="{{ url('/dashboard/partner/edit/'.$data->partner_id) }}">
 											<i class="md md-border-color colors"></i></a>
 										<a href="{{ url('/dashboard/partner/softdelete/'.$data->partner_id) }}">
 											<i class="md md-delete colors"></i></a>
-										@endif
-                                        {{-- <div class="btn-group">
-                                            <button type="button" class="btn btn-secondary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dropdown
+										@endif --}}
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Manage
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="#" class="dropdown-item">Action</a></li>
-                                                <li><a href="#" class="dropdown-item">Another action</a></li>
-                                                <li><a href="#" class="dropdown-item">Something else here</a></li>
-                                                <li class="dropdown-divider"></li>
-                                                <li><a href="#" class="dropdown-item">Separated link</a></li>
+                                                <li><a href="{{ url('/dashboard/partner/view/'.$data->partner_id ) }}" class="dropdown-item">View</a></li>
+                                                @if(Auth::user()->role=='1' )
+                                                <li><a href="{{ url('/dashboard/partner/edit/'.$data->partner_id ) }}" class="dropdown-item">Edit</a></li>
+                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                                                @endif
                                             </ul>
-                                        </div> --}}
+                                        </div>
                   					</td>
 								</tr>
+                                {{-- modal --}}
+                                <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title mt-0">Are You Want to Delete it?</h4>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">×</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<div class="row">
+
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+												<a href="{{ url('/dashboard/partner/softdelete/'.$data->partner_id ) }}" class="btn btn-danger waves-effect waves-light">Delete</a>
+											</div>
+										</div>
+									</div>
+								</div>
                 				@endforeach
               				</tbody>
 						</table>

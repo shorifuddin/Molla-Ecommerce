@@ -21,10 +21,10 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
       <div class="card-header bg-secondary card_header">
           <div class="row">
             <div class="col-md-8 card_header_title">
-              <i class="md md-add-circle"></i> UPLOAD Brand
+              <i class="md md-add-circle"></i> UPLOAD Product Catrgory
             </div>
             <div class="col-md-4 card_header_btn ">
-            <a href="{{ url('/dashboard/brand/all') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All Brand</a>
+            <a href="{{ url('/dashboard/brand/all') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All Product Catrgory</a>
            </div>
           </div>
       </div>
@@ -64,7 +64,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
           <label class="col-sm-3 col-form-label col_form_label">Product Category Image <span class="req_star">*</span>:</label>
           <div class="col-sm-7">
             <input type="file" name="pro_cate_image" value="{{ old('pro_cate_image') }}">
-            <strong class="invalid-feedback">
+           <strong class="invalid-feedback">
               @error('pro_cate_image')
                 {{ $message }}
               @enderror</strong>
@@ -80,4 +80,14 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
   </form>
   </div>
 </div>
+<script type="text/javascript">
+    // Header Logo
+    $('#header_logo_input').change(function(){
+      let reader = new FileReader();
+      reader.onload = (e) => {
+          $('#header_logo_preview').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(this.files[0]);
+      });
+  </script>
 @endsection

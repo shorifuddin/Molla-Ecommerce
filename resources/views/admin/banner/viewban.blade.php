@@ -7,14 +7,14 @@
       <div class="card-header bg-secondary card_header">
           <div class="row">
             <div class="col-md-8 card_header_title" style="font-weight: 400; font-size:16px;">
-              <i class="md md-add-circle "></i> User Information
+              <i class="md md-add-circle "></i> Banner Information
             </div>
             <div class="col-md-4 card_header_btn ">
               <a href="{{ url('dashboard/banner/all') }}" class="btn btn-xs btn-dark " ><i class="md md-view-module"></i> ALL Banner </a>
             </div>
           </div>
-      </div>  
-      				
+      </div>
+
       <div class="card-body">
         <div class="row">
           <div class="col-md-2"></div>
@@ -34,7 +34,7 @@
                   <td>Banner Button</td>
                   <td>:</td>
                   <td>{{ $data->ban_btn}}</td>
-                </tr> 
+                </tr>
                 <tr>
                   <td>Banner BTN-URL</td>
                   <td>:</td>
@@ -50,13 +50,13 @@
                   <td>:</td>
                   <td>
                     @if ($data->ban_img!='')
-                        
+
                       <img class="img-fluid img"  src="{{ asset('upload/banner/'.$data->ban_img) }}">
-                            
+
                     @else
-                        
+
                       <img class="img-fluid img" src="{{ asset('upload/avater.jpg') }}">
-                       
+
                     @endif
                   </td>
                 </tr>
@@ -75,6 +75,6 @@
     </div>
 
     </div>
-  </div> 
-</div>  
+  </div>
+</div>
 @endsection

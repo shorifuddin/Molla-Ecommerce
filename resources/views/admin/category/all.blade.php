@@ -15,7 +15,7 @@
 		<div class="card">
 			<div class="card-header bg-secondary card_header">
 				<div class="row">
-					<div class="col-md-8 card_header_title"> <i class="md md-add-circle "></i> All Brand Information </div>
+					<div class="col-md-8 card_header_title"> <i class="md md-add-circle "></i> All Product Information </div>
 					<div class="col-md-4 card_header_btn "> <a href="{{ url('dashboard/procatrgory/add') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> Add Producat Category</a> </div>
 				</div>
 			</div>
@@ -52,16 +52,27 @@
 										@endif
                   					</td>
 									<td>
-										<a href="{{ url('dashboard/procatrgory/view/'.$data->pro_cate_id ) }}">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Manage
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ url('dashboard/procatrgory/view/'.$data->pro_cate_id ) }}" class="dropdown-item">View</a></li>
+                                                @if(Auth::user()->role=='1' )
+                                                <li><a href="{{ url('dashboard/procatrgory/edit/'.$data->pro_cate_id ) }}" class="dropdown-item">Edit</a></li>
+                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                                        {{-- <a href="{{ url('dashboard/procatrgory/view/'.$data->pro_cate_id ) }}">
 											<i class="md md-remove-red-eye colors"></i> </a>
 										@if(Auth::user()->role=='1' )
 										<a href="{{ url('dashboard/procatrgory/edit/'.$data->pro_cate_id ) }}">
 											<i class="md md-border-color colors"></i></a>
-										{{-- <a href="{{ url('/dashboard/brand/softdelete/'.$data->brand_id) }}">
-											<i class="md md-delete colors"></i></a>  --}}
+										<a href="{{ url('/dashboard/brand/softdelete/'.$data->brand_id) }}">
+											<i class="md md-delete colors"></i></a>
 										<button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Delete</button>
-
-										@endif
+                                        @endif --}}
                   					</td>
 								</tr>
 								{{-- Modal --}}

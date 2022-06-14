@@ -53,13 +53,47 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
               <tr>
                   <td>{{ $data->role_name }}</td>
 
-                 <td>
-                    <a href="{{ url('/dashboard/role/view/'.$data->role_id) }}"><i class="md md-remove-red-eye colors"></i></a>
+                <td>
+                    {{-- <a href="{{ url('/dashboard/role/view/'.$data->role_id) }}"><i class="md md-remove-red-eye colors"></i></a>
                     <a href="{{ url('/dashboard/role/edit/'.$data->role_id) }}"><i class="md md-border-color colors"></i></a>
-                    <a href="{{ url('/dashboard/role/deleterole/'.$data->role_id) }}"><i class="md md-delete colors"></i></a>
-                  </td>
-              </tr>
+                    <a href="{{ url('/dashboard/role/deleterole/'.$data->role_id) }}"><i class="md md-delete colors"></i></a> --}}
 
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Manage
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('/dashboard/role/view/'.$data->role_id) }}" class="dropdown-item">View</a></li>
+                            @if(Auth::user()->role=='1' )
+                            <li><a href="{{ url('/dashboard/role/edit/'.$data->role_id) }}" class="dropdown-item">Edit</a></li>
+                            <li><a class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                            @endif
+                        </ul>
+                    </div>
+                </td>
+              </tr>
+              {{-- Modal --}}
+								<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title mt-0">Are You Want to Delete it?</h4>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">×</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<div class="row">
+
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+												<a href="{{ url('/dashboard/role/deleterole/'.$data->role_id) }}" class="btn btn-danger waves-effect waves-light">Delete</a>
+											</div>
+										</div>
+									</div>
+								</div>
               @endforeach
             </tbody>
           </table>

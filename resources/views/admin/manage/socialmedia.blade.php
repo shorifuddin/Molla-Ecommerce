@@ -21,10 +21,10 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
       <div class="card-header bg-secondary card_header">
           <div class="row">
             <div class="col-md-8 card_header_title">
-              <i class="md md-add-circle"></i> UPLOAD Brand
+              <i class="md md-add-circle"></i> UPLOAD Social Media Info
             </div>
             <div class="col-md-4 card_header_btn ">
-            <a href="{{ url('/dashboard/brand/all') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All Brand</a>
+            <a href="{{ url('/dashboard/brand/all') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All Social Media Info</a>
            </div>
           </div>
       </div>
@@ -132,7 +132,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
           </div>
         </div>
     <div class="card-footer bg-secondary card_footer">
-      <button type="submit" class="btn btn-dark">social Update</button>
+      <button type="submit" class="btn btn-dark">Social Update</button>
     </div>
 
     </div>

@@ -21,10 +21,10 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
       <div class="card-header bg-secondary card_header">
           <div class="row">
             <div class="col-md-8 card_header_title">
-              <i class="md md-add-circle"></i> UPLOAD Brand
+              <i class="md md-add-circle"></i> UPLOAD Contact Information
             </div>
             <div class="col-md-4 card_header_btn ">
-            <a href="{{ url('/dashboard/brand/all') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All Brand</a>
+            <a href="{{ url('/dashboard/brand/all') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All Contact Information</a>
            </div>
           </div>
       </div>

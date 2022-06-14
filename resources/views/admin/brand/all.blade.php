@@ -54,8 +54,7 @@
 										{{-- <a href="{{ url('/dashboard/brand/softdelete/'.$data->brand_id) }}">
 											<i class="md md-delete colors"></i></a>  --}}
 											<button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Delete</button>
-
-										@endif
+                                        @endif
                   					</td>
 								</tr>
 								{{-- Modal --}}

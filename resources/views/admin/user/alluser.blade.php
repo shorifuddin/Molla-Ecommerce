@@ -46,7 +46,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
 								</tr>
 							</thead>
 							<tbody>
-                @foreach ($alldata as $data)
+                                @foreach ($alldata as $data)
 								<tr>
 									<td>{{ $data->name }}</td>
 									<td>{{ $data->phone }}</td>
@@ -59,16 +59,51 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
                      					<img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}">
                     				@endif
                   					</td>
-					<td>
-						<a href="{{ url('/dashboard/user/view/'.$data->id) }}"><i class="md md-remove-red-eye colors"></i></a>
-						@if(Auth::user()->role=='1' )
-						<a href="{{ url('/dashboard/user/edit/'.$data->id) }}"><i class="md md-border-color colors"></i></a>
-						<a href="{{ url('/dashboard/user/softdelete/'.$data->id) }}"><i class="md md-delete colors"></i></a>
-						@endif
-                  	</td>
+					                <td>
+                                        {{-- <a href="{{ url('/dashboard/user/view/'.$data->id) }}"><i class="md md-remove-red-eye colors"></i></a>
+                                        @if(Auth::user()->role=='1' )
+                                        <a href="{{ url('/dashboard/user/edit/'.$data->id) }}"><i class="md md-border-color colors"></i></a>
+                                        <a href="{{ url('/dashboard/user/softdelete/'.$data->id) }}"><i class="md md-delete colors"></i></a>
+                                        @endif --}}
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Manage
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ url('/dashboard/user/view/'.$data->id) }}" class="dropdown-item">View</a></li>
+                                                @if(Auth::user()->role=='1' )
+                                                <li><a href="{{ url('/dashboard/user/edit/'.$data->id)  }}" class="dropdown-item">Edit</a></li>
+                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                  	                </td>
 								</tr>
-                @endforeach
-              </tbody>
+                                {{-- Modal --}}
+								<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title mt-0">Are You Want to Delete it?</h4>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">×</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<div class="row">
+
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+												<a href="{{ url('/dashboard/user/softdelete/'.$data->id) }}" class="btn btn-danger waves-effect waves-light">Delete</a>
+											</div>
+										</div>
+									</div>
+								</div>
+                                @endforeach
+                            </tbody>
 						</table>
 					</div>
 				</div>

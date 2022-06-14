@@ -21,14 +21,14 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
         <div class="card-header bg-secondary card_header">
             <div class="row">
               <div class="col-md-8 card_header_title">
-                <i class="md md-add-circle"></i> REGISTRATION NOW
+                <i class="md md-add-circle"></i> User REGISTRATION NOW
               </div>
               <div class="col-md-4 card_header_btn ">
               <a href="{{ url('/dashboard/user/alluser') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All User</a>
              </div>
             </div>
-        </div>  
-  
+        </div>
+
         <div class="card-body">
           <div class="form-group row">
             <label class="col-sm-3 col-form-label col_form_label">Name<span class="req_star">*</span>:</label>
@@ -62,7 +62,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
           <div class="form-group row ">
             <label class="col-sm-3 col-form-label col_form_label">Password<span class="req_star">*</span>:</label>
             <div class="col-sm-7 pp" >
-              <input type="password" class="form-control form_control" name="password" 
+              <input type="password" class="form-control form_control" name="password"
               required autocomplete="new-password" value="{{ old('password') }}">
               @error('password')
                 {{ $message }}
@@ -87,7 +87,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
                 @foreach ($roledata as $data)
                 <option value="{{ $data->role_id }}">{{ $data->role_name }}</option>
                 @endforeach
-              
+
               </select>
             </div>
           </div>
@@ -98,13 +98,13 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
             </div>
           </div>
         </div>
-  
+
       <div class="card-footer bg-secondary card_footer">
         <button type="submit" class="btn btn-dark">REGISTRATION</button>
       </div>
-  
+
       </div>
     </form>
-    </div> 
-  </div>   
+    </div>
+  </div>
 @endsection

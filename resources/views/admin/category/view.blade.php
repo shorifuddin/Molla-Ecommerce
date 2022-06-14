@@ -7,14 +7,14 @@
       <div class="card-header bg-secondary card_header">
           <div class="row">
             <div class="col-md-8 card_header_title" style="font-weight: 400; font-size:16px;">
-              <i class="md md-add-circle "></i> User Information
+              <i class="md md-add-circle "></i> Category Information
             </div>
             <div class="col-md-4 card_header_btn ">
-              <a href="{{ url('dashboard/procatrgory/all')) }}" class="btn btn-xs btn-dark " ><i class="md md-view-module"></i> ALL Producat Category </a>
+              <a href="{{ url('dashboard/procatrgory/all') }}" class="btn btn-xs btn-dark " ><i class="md md-view-module"></i> ALL Producat Category </a>
             </div>
           </div>
-      </div>  
-      				
+      </div>
+
       <div class="card-body">
         <div class="row">
           <div class="col-md-2"></div>
@@ -34,22 +34,22 @@
                   <td>Product Category Icon</td>
                   <td>:</td>
                   <td>
-                    @if (!empty($data->pro_cate_icon)) 
-										  <img class="img-fluid img" src="{{ asset('upload/category/icon/'.$data->pro_cate_icon) }}"> 
-										@else 
-										  <img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}"> 
-										@endif 
+                    @if (!empty($data->pro_cate_icon))
+						<img class="img-fluid img" src="{{ asset('upload/category/icon/'.$data->pro_cate_icon) }}">
+					@else
+						 <img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}">
+					@endif
                   </td>
-                </tr> 
+                </tr>
                 <tr>
                   <td>Product Category Image</td>
                   <td>:</td>
                   <td>
-                    @if (!empty($data->pro_cate_image)) 
-										  <img class="img-fluid img" src="{{ asset('upload/category/'.$data->pro_cate_image) }}"> 
-										@else 
-										  <img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}"> 
-										@endif 
+                    @if (!empty($data->pro_cate_image))
+						<img class="img-fluid img" src="{{ asset('upload/category/'.$data->pro_cate_image) }}">
+					@else
+						<img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}">
+					@endif
                   </td>
                 </tr>
             </table>
@@ -67,6 +67,6 @@
     </div>
 
     </div>
-  </div> 
-</div>  
+  </div>
+</div>
 @endsection

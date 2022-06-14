@@ -34,27 +34,63 @@
 								</tr>
 							</thead>
 							<tbody>
-                @foreach ($alldata as $data)
+                            @foreach ($alldata as $data)
 								<tr>
 									<td>{{ $data->ban_title }}</td>
 									<td>{{ $data->ban_subtitle }}</td>
 									<td>{{ $data->ban_btn }}</td>
 									<td>{{ $data->ban_btnurl }}</td>
 									<td>
-                    @if (!empty($data->ban_img))
-                     <img class="img-fluid img" src="{{ asset('upload/user/'.$data->ban_img) }}">
-                    @else
-                     <img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}">
-                    @endif
-                  </td>
-									<td>
-                    <a href="{{ url('/dashboard/user/view/'.$data->ban_id) }}"><i class="md md-remove-red-eye colors"></i></a> @if(Auth::user()->role=='1' )
-                    <a href="{{ url('/dashboard/user/edit/'.$data->ban_id) }}"><i class="md md-border-color colors"></i></a>
-                    <a href="{{ url('/dashboard/user/softdelete/'.$data->ban_id) }}"><i class="md md-delete colors"></i></a> @endif
-                  </td>
-								</tr>
-                @endforeach
-              </tbody>
+                                        @if (!empty($data->ban_img))
+                                        <img class="img-fluid img" src="{{ asset('upload/user/'.$data->ban_img) }}">
+                                        @else
+                                        <img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}">
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Manage
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ url('/dashboard/user/view/'.$data->ban_id) }}" class="dropdown-item">View</a></li>
+                                                @if(Auth::user()->role=='1' )
+                                                <li><a href="{{ url('/dashboard/user/edit/'.$data->ban_id) }}" class="dropdown-item">Edit</a></li>
+                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                                        {{-- <a href="{{ url('/dashboard/user/view/'.$data->ban_id) }}"><i class="md md-remove-red-eye colors"></i></a>
+                                        @if(Auth::user()->role=='1' )
+                                        <a href="{{ url('/dashboard/user/edit/'.$data->ban_id) }}"><i class="md md-border-color colors"></i></a>
+                                        <a href="{{ url('/dashboard/user/softdelete/'.$data->ban_id) }}"><i class="md md-delete colors"></i></a>
+                                        @endif --}}
+                                    </td>
+				                </tr>
+                                {{-- Modal --}}
+								<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title mt-0">Are You Want to Delete it?</h4>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">×</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<div class="row">
+
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+												<a href="{{ url('/dashboard/user/softdelete/'.$data->ban_id) }}" class="btn btn-danger waves-effect waves-light">Delete</a>
+											</div>
+										</div>
+									</div>
+								</div>
+                            @endforeach
+                            </tbody>
 						</table>
 					</div>
 				</div>

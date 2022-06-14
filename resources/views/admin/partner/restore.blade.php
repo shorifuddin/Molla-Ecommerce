@@ -23,30 +23,65 @@
 									<th>Manage</th>
 								</tr>
 							</thead>
-							<tbody> 
-                @foreach ($alldata as $data)
+							<tbody>
+                            @foreach ($alldata as $data)
 								<tr>
 									<td>{{ $data->partner_name }}</td>
 									<td>{{ $data->partner_url}}</td>
 									<td>{{ $data->creatorinfo->name }}</td>
-									<td> 
-										@if (!empty($data->partner_logo)) 
-										<img class="img-fluid img" src="{{ asset('upload/partner/'.$data->partner_logo) }}"> 
-										@else 
-										<img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}"> 
-										@endif 
+									<td>
+										@if (!empty($data->partner_logo))
+										<img class="img-fluid img" src="{{ asset('upload/partner/'.$data->partner_logo) }}">
+										@else
+										<img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}">
+										@endif
                   					</td>
-									<td> 
-										@if(Auth::user()->role=='1' ) 
+									<td>
+										{{-- @if(Auth::user()->role=='1' )
 										<a href="{{ url('/dashboard/partner/restoredata/'.$data->partner_id) }}">
-											<i class="md-cached colors"></i></a> 
+											<i class="md-cached colors"></i></a>
 										<a href="{{ url('/dashboard/partner/delete/'.$data->partner_id) }}">
-											<i class="md md-delete colors"></i></a> 
-										@endif 
+											<i class="md md-delete colors"></i></a>
+										@endif --}}
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Manage
+                                            </button>
+                                            <ul class="dropdown-menu">
+
+                                                @if(Auth::user()->role=='1' )
+                                                <li><a href="{{ url('/dashboard/partner/restoredata/'.$data->partner_id) }}" class="dropdown-item">Restore</a></li>
+                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                                                @endif
+                                            </ul>
+                                        </div>
+
                  					 </td>
-								</tr> 
-                @endforeach 
-              </tbody>
+								</tr>
+                                <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title mt-0">Are You Want to Delete it?</h4>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">×</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<div class="row">
+
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+												<a href="{{ url('/dashboard/partner/delete/'.$data->partner_id) }}" class="btn btn-danger waves-effect waves-light">Delete</a>
+											</div>
+										</div>
+									</div>
+								</div>
+                            @endforeach
+                            </tbody>
 						</table>
 					</div>
 				</div>

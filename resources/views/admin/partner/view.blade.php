@@ -7,14 +7,14 @@
       <div class="card-header bg-secondary card_header">
           <div class="row">
             <div class="col-md-8 card_header_title" style="font-weight: 400; font-size:16px;">
-              <i class="md md-add-circle "></i> User Information
+              <i class="md md-add-circle "></i> Partner Information
             </div>
             <div class="col-md-4 card_header_btn ">
-              <a href="{{ url('dashboard/partner/all') }}" class="btn btn-xs btn-dark " ><i class="md md-view-module"></i> ALL Banner </a>
+              <a href="{{ url('dashboard/partner/all') }}" class="btn btn-xs btn-dark " ><i class="md md-view-module"></i> ALL Partner </a>
             </div>
           </div>
-      </div>  
-      				
+      </div>
+
       <div class="card-body">
         <div class="row">
           <div class="col-md-2"></div>
@@ -34,7 +34,7 @@
                   <td>Partner Creator</td>
                   <td>:</td>
                   <td>{{ $data->creatorinfo->name}}</td>
-                </tr> 
+                </tr>
                 <tr>
                   <td>Partner Photo</td>
                   <td>:</td>
@@ -61,6 +61,6 @@
     </div>
 
     </div>
-  </div> 
-</div>  
+  </div>
+</div>
 @endsection

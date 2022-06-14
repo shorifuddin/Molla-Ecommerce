@@ -21,14 +21,14 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
         <div class="card-header bg-secondary card_header">
             <div class="row">
               <div class="col-md-8 card_header_title">
-                <i class="md md-add-circle"></i> REGISTRATION NOW
+                <i class="md md-add-circle"></i> USER UPDATE NOW
               </div>
               <div class="col-md-4 card_header_btn ">
               <a href="{{ url('/dashboard/user/all') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All User</a>
              </div>
             </div>
-        </div>  
-  
+        </div>
+
         <div class="card-body">
           <div class="form-group row">
             <label class="col-sm-3 col-form-label col_form_label">Name<span class="req_star">*</span>:</label>
@@ -90,24 +90,24 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
             <div class="col-sm-7 ">
               <input type="file" name="image" value="{{ $data->image }}">
               @error('image')
-                 <p class="pp">{{ $message }}</p> 
+                 <p class="pp">{{ $message }}</p>
               @enderror
               @if ($data->image!='')
                 <img class="img-fluid img"  src="{{ asset('upload/user/'.$data->image) }}">
               @else
                  <img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}">
               @endif
-              
+
             </div>
           </div>
         </div>
-  
+
       <div class="card-footer bg-secondary card_footer">
-        <button type="submit" class="btn btn-dark">REGISTRATION</button>
+        <button type="submit" class="btn btn-dark">Update User</button>
       </div>
-  
+
       </div>
     </form>
-    </div> 
-  </div>   
+    </div>
+  </div>
 @endsection

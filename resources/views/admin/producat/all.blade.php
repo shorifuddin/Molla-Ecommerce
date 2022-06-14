@@ -40,17 +40,16 @@
                   					</td>
 									<td>
 										<div class="btn-group">
-                                            <button type="button" class="btn btn-secondary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Manage
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a href="#" class="dropdown-item">View</a></li>
                                                 <li><a href="#" class="dropdown-item">Edit</a></li>
-                                                <li><a type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                                                <li><a href="" class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
                                             </ul>
                                         </div>
-
-                  					</td>
+                                    </td>
 
 								</tr>
 								{{-- Modal --}}
