@@ -14,62 +14,222 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
 
 <div class="row container">
   <div class="col-md-12 container">
-    <form method="POST" action="{{ route('brand.update',$data->brand_id) }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('dashboard/') }}" enctype="multipart/form-data">
       @csrf
-      <input type="hidden" name="brand_id" value="{{ $data->brand_id }}">
-      <input type="hidden" name="brand_slug" value="{{ $data->brand_slug }}">
+      <input type="hidden" name="product_id" value="{{ $data->product_id}}">
+      <input type="hidden" name="product_slug" value="{{ $data->product_slug }}">
      <div class="card">
       <div class="card-header bg-secondary card_header">
           <div class="row">
             <div class="col-md-8 card_header_title">
-              <i class="md md-add-circle"></i> UPDATE BANNER
+              <i class="md md-add-circle"></i> UPDATE Product
             </div>
             <div class="col-md-4 card_header_btn ">
-            <a href="{{ url('dashboard/brand/all') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All Banner</a>
+            <a href="{{ url('dashboard/product/all') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All Product</a>
            </div>
           </div>
-      </div>  
+      </div>
 
       <div class="card-body">
-        <div class="form-group row {{ $errors->has('brand_name') ? 'has-errorr':'' }}">
-          <label class="col-sm-3 col-form-label col_form_label">Brand Name <span class="req_star">*</span>:</label>
-          <div class="col-sm-7">
-
-            <input type="text" class="form-control form_control" name="brand_name" value="{{ $data->brand_name  }}">
-            @if ($errors->has('brand_name'))
-               <strong class="invalid-feedback">{{ $errors->first('brand_name') }}</strong>
-            @endif
-          </div>
-        </div>
-        <div class="form-group row ">
-          <label class="col-sm-3 col-form-label col_form_label">Brand Remaks :</label>
-          <div class="col-sm-7">
-            <input type="text" class="form-control form_control" name="brand_remaks" value="{{ $data->brand_remaks }}">
-            <span class="invalid-feedback">
-              @error('brand_remaks')
-                {{ $message }}
-            @enderror</span>
-          </div>
-        </div>
         <div class="form-group row">
-          <label class="col-sm-3 col-form-label col_form_label">Brand Photo <span class="req_star">*</span>:</label>
+          <label class="col-sm-3 col-form-label col_form_label">Product Name <span class="req_star">*</span>:</label>
           <div class="col-sm-7">
-            <input type="file" name="brand_image" value="{{ $data->brand_image }}">
-            @if ($data->brand_image!='')
-              <img class="img-fluid img"  src="{{ asset('upload/brand/'.$data->brand_image) }}">
+            <input type="text" class="form-control form_control" name="product_name" value="{{ $data->product_name }}">
+            @error('product_name')
+            <span class="text-danger">{{ $message }}</span>
+           @enderror
+          </div>
+        </div>
+
+        @php
+            $categories = App\Models\Prodcategory::where('pro_cate_status', 1)->get();
+        @endphp
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label col_form_label">Product Category<span class="req_star">*</span>:</label>
+            <div class="col-sm-4">
+            <select class="form-control form_control" name="pro_category_id">
+                <option disabled selected label="Product Category"></option>
+                @foreach ($categories as $cdata)
+                <option value="{{ $cdata['pro_cate_id'] }}">{{ $cdata['pro_cate_name'] }}</option>
+                @endforeach
+            </select>
+            @error('pro_category_id')
+            <span class="text-danger">{{ $message }}</span>
+           @enderror
+            </div>
+        </div>
+
+        @php
+        $brand = App\Models\Brand::where('brand_status', 1)->get();
+        @endphp
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label col_form_label">Product Brand<span class="req_star">*</span>:</label>
+            <div class="col-sm-4">
+            <select class="form-control form_control" name="brand_id">
+                <option disabled selected label="Select Brand"></option>
+                @foreach ($brand as $bdata)
+                <option value="{{ $bdata['brand_id'] }}">{{ $bdata['brand_name'] }}</option>
+                @endforeach
+            </select>
+            @error('brand_id')
+            <span class="text-danger">{{ $message }}</span>
+           @enderror
+            </div>
+        </div>
+
+          <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Price :</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control form_control" name="product_price" value="{{ $data->product_price }}">
+              @error('product_price')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+          </div>
+
+        <div class="form-group row ">
+          <label class="col-sm-3 col-form-label col_form_label">Product Discount Price :</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control form_control" name="product_discount_price" value="{{ $data->product_discount_price }}">
+            @error('product_discount_price')
+            <span class="text-danger">{{ $message }}</span>
+           @enderror
+          </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Order :</label>
+            <div class="col-sm-7">
+              <input type="number" class="form-control form_control" name="product_order" value="{{ $data->product_order }}">
+              @error('product_order')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Quantity :</label>
+            <div class="col-sm-7">
+              <input type="number" min="1" class="form-control form_control" name="product_quantity" value="{{ $data->product_quantity }}">
+              @error('product_quantity')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Unit :</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control form_control" name="product_unit" value="{{ $data->product_unit }}">
+              @error('product_unit')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Feature :</label>
+            <div class="col-sm-7">
+              <input type="number" class="form-control form_control" name="product_feature" value="{{ $data->product_feature }}">
+              @error('product_feature')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label col_form_label"> Product Image<span class="req_star">*</span>:</label>
+          <div class="col-sm-7">
+            <input type="file" name="product_image" value="{{ old('product_image') }}">
+            @if (!empty($data->product_image))
+              <img class="img-fluid img"  src="{{ asset('upload/product/'.$data->product_image) }}">
             @else
               <img class="img-fluid img" src="{{ asset('upload/avater.jpg') }}">
             @endif
+            @error('product_image')
+            <span class="text-danger">{{ $message }}</span>
+           @enderror
           </div>
         </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label col_form_label"> Product Gallery Image<span class="req_star">*</span>:</label>
+            <div class="col-sm-7">
+              <input multiple type="file" name="product_gallery[]" value="{{ old('product_gallery') }}">
+              @if (!empty($data->product_gallery))
+              <img class="img-fluid img"  src="{{ asset('upload/product/gallery/'.$data->product_gallery) }}">
+            @else
+              <img class="img-fluid img" src="{{ asset('upload/avater.jpg') }}">
+            @endif
+              @error('product_gallery')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Details :</label>
+            <div class="col-sm-7">
+                <textarea class="summernote form-control form_control" name="product_detils" id="" value="{{ $data->product_detils }}"></textarea>
+            @error('product_detils')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-sm-3 col-form-label col_form_label">Product Description :</label>
+            <div class="col-sm-7">
+                <textarea class="summernote form-control form_control" name="product_description" value="{{ $data->product_description }}" id="" ></textarea>
+            @error('product_description')
+              <span class="text-danger">{{ $message }}</span>
+             @enderror
+            </div>
+        </div>
+
       </div>
 
     <div class="card-footer bg-secondary card_footer">
-      <button type="submit" class="btn btn-dark">Brand Update</button>
+      <button type="submit" class="btn btn-dark">Product Update</button>
     </div>
+
 
     </div>
   </form>
-  </div> 
-</div>  
+  </div>
+</div>
+@endsection
+@section('couston_jquery')
+<script src="{{asset('content/admin')}}/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+<script src="{{asset('content/admin')}}/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+
+<!--form validation init-->
+<script src="{{asset('content/admin')}}/plugins/summernote/summernote-bs4.js"></script>
+
+<script>
+
+    jQuery(document).ready(function(){
+        $('.wysihtml5').wysihtml5();
+
+        $('.summernote').summernote({
+            height: 200,                 // set editor height
+
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+
+            focus: true                 // set focus to editable area after initializing summernote
+        });
+
+    });
+</script>
+
+
+@endsection
+@section('couston_css')
+<!--bootstrap-wysihtml5-->
+<link rel="stylesheet" type="text/css" href="{{asset('content/admin')}}/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css">
+<link href="{{asset('content/admin')}}/plugins/summernote/summernote-bs4.css" rel="stylesheet">
+
 @endsection

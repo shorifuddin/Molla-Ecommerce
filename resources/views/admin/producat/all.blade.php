@@ -44,9 +44,9 @@
                                                 Manage
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="#" class="dropdown-item">View</a></li>
-                                                <li><a href="#" class="dropdown-item">Edit</a></li>
-                                                <li><a href="" class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                                                <li><a href="{{ url('dashboard/product/view/'.$data->product_id) }}" class="dropdown-item">View</a></li>
+                                                <li><a href="{{ url('/dashboard/product/edit/'.$data->product_id) }}" class="dropdown-item">Edit</a></li>
+                                                <li><a  class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
                                             </ul>
                                         </div>
                                     </td>
@@ -69,7 +69,7 @@
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-												<a href="{{ url('/dashboard/brand/softdelete/'.$data->product_id) }}" class="btn btn-danger waves-effect waves-light">Delete</a>
+												<a href="{{ url('/dashboard/product/softdelete/'.$data->product_id) }}" class="btn btn-danger waves-effect waves-light">Delete</a>
 											</div>
 										</div>
 									</div>

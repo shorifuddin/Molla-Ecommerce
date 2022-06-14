@@ -87,4 +87,14 @@ class ProductController extends Controller{
             return redirect('dashboard/product/add');
         }
     }
+
+    public function view($id){
+        $data=Product::where('product_status',1)->where('product_id',$id)->first();
+        return view('admin.producat.view',compact('data'));
+    }
+
+    public function edit($id){
+        $data=Product::where('product_status',1)->where('product_id',$id)->first();
+        return view('admin.producat.edit',compact('data'));
+    }
 }
