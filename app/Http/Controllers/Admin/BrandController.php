@@ -12,7 +12,7 @@ use Session;
 use Image;
 
 class BrandController extends Controller{
-    
+
     public function __construct(){
         $this->middleware('auth');
     }
@@ -25,7 +25,7 @@ class BrandController extends Controller{
         $validated = $request->validate([
             'brand_name' => 'required|unique:brands|max:100',
             'brand_remaks' => 'required|max:255',
-            'brand_image' => 'required|max:255',
+            'brand_image' => 'required',
         ],[
             'brand_name.required'=>'Fill The Brand-Name',
             'brand_name.unique'=> 'This Brand-Name already Added',
@@ -45,8 +45,8 @@ class BrandController extends Controller{
         if ($request->hasFile('brand_image')) {
             $pic=$request->file('brand_image');
             $imgname='brandimg-' . time().'-'.'.'. $pic->getClientOriginalExtension();
-            Image::make($pic)->save('upload/brand/'.$imgname);
- 
+            Image::make($pic)->resize(720, 720)->save('upload/brand/'.$imgname);
+
             brand::where('brand_id', $insert)->update([
                 'brand_image'=>$imgname,
             ]);
@@ -76,7 +76,7 @@ class BrandController extends Controller{
         return view('admin.brand.edit',compact('data'));
     }
 
-    public function update(Request $request, $id){   
+    public function update(Request $request, $id){
         // return $request->all();
         $validated = $request->validate([
             'brand_name' => 'required|max:255',
@@ -88,11 +88,11 @@ class BrandController extends Controller{
         $id = $request->brand_id;
         $slug = $request->brand_slug;
         $brand = Brand::where('brand_id', $id)->where('brand_slug', $slug)->firstOrFail();
-        
+
         if ($request->hasFile('brand_image')) {
            $pic = $request->file('brand_image');
            $imagename = 'brand'. time() . '.' .$pic->getClientOriginalExtension();
-           Image::make($pic)->resize(150, 150)->save('upload/brand/'.$imagename);
+           Image::make($pic)->resize(720, 720)->save('upload/brand/'.$imagename);
         }else{
             $imagename = $brand->brand_image;
         }
@@ -155,7 +155,7 @@ class BrandController extends Controller{
         }else{
             Session::flash('error','Value');
             return redirect('dashboard/brand/restore');
-           
+
         }
     }
 

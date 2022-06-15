@@ -97,4 +97,69 @@ class ProductController extends Controller{
         $data=Product::where('product_status',1)->where('product_id',$id)->first();
         return view('admin.producat.edit',compact('data'));
     }
+
+    public function update(Request $request, $id){
+        // return $request->all();
+        $validated = $request->validate([
+            'product_name' => 'required|max:100',
+        ],[
+            'product_name.required'=>'Fill The Product-Name',
+        ]);
+
+        $id = $request->product_id;
+        $slug = $request->product_slug;
+        $product = Product::where('product_id', $id)->where('product_status', 1)->firstOrFail();
+
+        if ($request->hasFile('product_image')) {
+            if (File::exists('upload/product/'.$product->product_image)) {
+                File::delete('upload/product/'.$product->product_image);
+            }
+
+           $pic = $request->file('product_image');
+           $imgname = 'pro'. time() . '.' .$pic->getClientOriginalExtension();
+           Image::make($pic)->save('upload/product/'.$imgname);
+        }else{
+            $imgname = $product->product_image;
+        }
+
+        if ($request->hasFile('product_gallery')) {
+            if (File::exists('upload/product/gallery/'.$product->product_gallery)) {
+                File::delete('upload/product/gallery/'.$product->product_gallery);
+            }
+
+           $gallerys = $request->file('product_gallery');
+           foreach($gallerys as $gallery){
+            $gallery = 'gal'. rand(1000,10000) . '.' .$gallerys->getClientOriginalExtension();
+            Image::make($pic)->save('upload/product/gallery/'.$gallery);
+           }
+        }else{
+            $gallery = $product->product_gallery;
+        }
+
+        $update = Product::where('product_id',$id)->update([
+            'product_name' => $request->product_name,
+            'pro_category_id' => $request->pro_category_id,
+            'brand_id' => $request->brand_id,
+            'product_price' => $request->product_price,
+            'product_discount_price' => $request->product_discount_price,
+            'product_order' => $request->product_order,
+            'product_quantity' => $request->product_quantity,
+            'product_unit' => $request->product_unit,
+            'product_feature' => $request->product_feature,
+            'product_image' => $imgname,
+            'product_detils' => $request->product_detils,
+            'product_description' => $request->product_description,
+            'product_slug' => uniqid(),
+            'product_creator' => Auth::user()->id,
+            'created_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        if($update){
+            Session::flash('success','Value');
+            return redirect()->route('product.all');
+        }else{
+            Session::flash('error','Value');
+            return redirect()->route('product.edit',$id);
+        }
+    }
 }

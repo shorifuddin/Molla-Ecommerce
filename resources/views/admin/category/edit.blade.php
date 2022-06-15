@@ -42,16 +42,23 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
            </span>
           </div>
         </div>
+
+        @php
+        $cat = App\Models\Prodcategory::where('pro_cate_status', 1)->get();
+        @endphp
+
         <div class="form-group row ">
           <label class="col-sm-3 col-form-label col_form_label">Product Category Parent :</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control form_control" name="pro_cate_parent" value="{{ $data->pro_cate_parent }}">
-            <span class="invalid-feedback">
-              @error('pro_cate_parent')
-                {{ $message }}
-            @enderror</span>
+            <select class="form-control form_control" name="pro_cate_parent">
+                <option disabled selected label="Select Brand"></option>
+                @foreach ($cat as $cdata)
+                <option value="{{ $cdata['pro_cate_id'] }}">{{ $cdata['pro_cate_name'] }}</option>
+                @endforeach
+            </select>
           </div>
         </div>
+
         <div class="form-group row">
           <label class="col-sm-3 col-form-label col_form_label">Product Category Icon <span class="req_star">*</span>:</label>
           <div class="col-sm-7">
@@ -63,6 +70,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
             @endif
           </div>
         </div>
+
         <div class="form-group row">
           <label class="col-sm-3 col-form-label col_form_label">Product Category Image <span class="req_star">*</span>:</label>
           <div class="col-sm-7">

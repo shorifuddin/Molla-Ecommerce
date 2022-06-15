@@ -127,6 +127,23 @@
                   @endif
                   @if(Auth::user()->role=='1' || Auth::user()->role=='2')
                      <li class="has_sub">
+                        <a href="#" class="waves-effect"><i class=" md-shopping-basket"></i>
+                            <span> Product Info </span>
+                            <span class="pull-right"><i class="md md-add"></i></span>
+                        </a>
+                        <ul class="list-unstyled">
+                        @if(Auth::user()->role=='1' )
+                           <li><a href="{{url('dashboard/product/add')}}">ADD Product</a></li>
+                        @endif
+                           <li><a href="{{url('dashboard/product/all')}}">ALL Product</a></li>
+                         @if(Auth::user()->role=='1' )
+                           <li><a href="{{url('dashboard/product/restore')}}">Deleted Product</a></li>
+                        @endif
+                        </ul>
+                     </li>
+                  @endif
+                  @if(Auth::user()->role=='1' || Auth::user()->role=='2')
+                     <li class="has_sub">
                         <a href="#" class="waves-effect"><i class=" md-loyalty"></i>
                             <span> Brand Info </span>
                             <span class="pull-right"><i class="md md-add"></i></span>
@@ -142,27 +159,11 @@
                         </ul>
                      </li>
                   @endif
-                  @if(Auth::user()->role=='1' || Auth::user()->role=='2')
-                     <li class="has_sub">
-                        <a href="#" class="waves-effect"><i class=" md-shopping-basket"></i>
-                            <span> Product Info </span>
-                            <span class="pull-right"><i class="md md-add"></i></span>
-                        </a>
-                        <ul class="list-unstyled">
-                        @if(Auth::user()->role=='1' )
-                           <li><a href="{{url('dashboard/product/add')}}">ADD Category</a></li>
-                        @endif
-                           <li><a href="{{url('dashboard/product/all')}}">ALL Category</a></li>
-                         @if(Auth::user()->role=='1' )
-                           <li><a href="{{url('dashboard/product/restore')}}">Deleted Category</a></li>
-                        @endif
-                        </ul>
-                     </li>
-                  @endif
+
                   @if(Auth::user()->role=='1' || Auth::user()->role=='2')
                      <li class="has_sub">
                         <a href="#" class="waves-effect"><i class="md-store-mall-directory"></i>
-                            <span> ProducatCategory </span>
+                            <span>Category Info </span>
                             <span class="pull-right"><i class="md md-add"></i></span>
                         </a>
                         <ul class="list-unstyled">

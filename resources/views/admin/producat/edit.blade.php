@@ -14,10 +14,11 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
 
 <div class="row container">
   <div class="col-md-12 container">
-    <form method="POST" action="{{ url('dashboard/') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('product.update',$data->product_id) }}" enctype="multipart/form-data">
       @csrf
+
       <input type="hidden" name="product_id" value="{{ $data->product_id}}">
-      <input type="hidden" name="product_slug" value="{{ $data->product_slug }}">
+      <input type="hidden" name="product_slug" value="{{ $data->product_slug}}">
      <div class="card">
       <div class="card-header bg-secondary card_header">
           <div class="row">
@@ -50,8 +51,8 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
             <div class="col-sm-4">
             <select class="form-control form_control" name="pro_category_id">
                 <option disabled selected label="Product Category"></option>
-                @foreach ($categories as $cdata)
-                <option value="{{ $cdata['pro_cate_id'] }}">{{ $cdata['pro_cate_name'] }}</option>
+                 @foreach ($categories as $cdata)
+                <option value="{{ $cdata->pro_cate_id }}" {{ $cdata->pro_cate_id == $data->pro_category_id ?  'selected' : '' }}>{{ $cdata->pro_cate_name }}</option>
                 @endforeach
             </select>
             @error('pro_category_id')
@@ -68,9 +69,9 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
             <label class="col-sm-3 col-form-label col_form_label">Product Brand<span class="req_star">*</span>:</label>
             <div class="col-sm-4">
             <select class="form-control form_control" name="brand_id">
-                <option disabled selected label="Select Brand"></option>
-                @foreach ($brand as $bdata)
-                <option value="{{ $bdata['brand_id'] }}">{{ $bdata['brand_name'] }}</option>
+                <option disabled selected label="Select Brand"></option> --}}
+                 @foreach ($brand as $bdata)
+                <option value="{{ $bdata->brand_id }}" {{ $bdata->brand_id == $data->brand_id ?  'selected' : '' }}>{{ $bdata->brand_name }}</option>
                 @endforeach
             </select>
             @error('brand_id')
@@ -172,7 +173,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
         <div class="form-group row ">
             <label class="col-sm-3 col-form-label col_form_label">Product Details :</label>
             <div class="col-sm-7">
-                <textarea class="summernote form-control form_control" name="product_detils" id="" value="{{ $data->product_detils }}"></textarea>
+                <textarea class="summernote form-control form_control" name="product_detils" id="" value="">{{ $data->product_detils }}</textarea>
             @error('product_detils')
               <span class="text-danger">{{ $message }}</span>
              @enderror
@@ -182,7 +183,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
         <div class="form-group row ">
             <label class="col-sm-3 col-form-label col_form_label">Product Description :</label>
             <div class="col-sm-7">
-                <textarea class="summernote form-control form_control" name="product_description" value="{{ $data->product_description }}" id="" ></textarea>
+                <textarea class="summernote form-control form_control" name="product_description" value="" id="" >{{ $data->product_description }}</textarea>
             @error('product_description')
               <span class="text-danger">{{ $message }}</span>
              @enderror

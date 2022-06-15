@@ -46,15 +46,28 @@
 										@endif
                   					</td>
 									<td>
-										<a href="{{ url('/dashboard/brand/view/'.$data->brand_id) }}">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Manage
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ url('/dashboard/brand/view/'.$data->brand_id) }}" class="dropdown-item">View</a></li>
+                                                @if(Auth::user()->role=='1' )
+                                                <li><a href="{{ url('/dashboard/brand/edit/'.$data->brand_id) }}" class="dropdown-item">Edit</a></li>
+                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                                                @endif
+                                            </ul>
+                                        </div>
+
+										{{-- <a href="{{ url('/dashboard/brand/view/'.$data->brand_id) }}">
 											<i class="md md-remove-red-eye colors"></i> </a>
 										@if(Auth::user()->role=='1' )
 										<a href="{{ url('/dashboard/brand/edit/'.$data->brand_id) }}">
-											<i class="md md-border-color colors"></i></a>
+											<i class="md md-border-color colors"></i></a> --}}
 										{{-- <a href="{{ url('/dashboard/brand/softdelete/'.$data->brand_id) }}">
 											<i class="md md-delete colors"></i></a>  --}}
-											<button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Delete</button>
-                                        @endif
+											{{-- <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Delete</button> --}}
+                                        {{-- @endif --}}
                   					</td>
 								</tr>
 								{{-- Modal --}}
