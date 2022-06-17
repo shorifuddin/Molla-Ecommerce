@@ -53,7 +53,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
             <select class="form-control form_control" name="pro_cate_parent">
                 <option disabled selected label="Select Brand"></option>
                 @foreach ($cat as $cdata)
-                <option value="{{ $cdata['pro_cate_id'] }}">{{ $cdata['pro_cate_name'] }}</option>
+                <option value="{{ $cdata['pro_cate_id'] }}" {{ $cdata->pro_cate_id == $data->pro_cate_parent ?  'selected' : '' }}>{{ $cdata['pro_cate_name'] }}</option>
                 @endforeach
             </select>
           </div>

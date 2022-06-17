@@ -138,6 +138,10 @@ Route::get('product/all', [ProductController::class, 'all'])->name('product.all'
 Route::get('product/view/{id}', [ProductController::class, 'view'])->name('product.view');
 Route::get('product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
 Route::POST('product/update/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::get('product/softdelete/{id}', [ProductController::class, 'softdelete'])->name('product.softdelete');
+Route::get('product/restore', [ProductController::class, 'restore'])->name('product.restore');
+Route::get('product/restoredata/{id}', [ProductController::class, 'restoredata'])->name('product.restoredata');
+Route::get('product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
 
 // Route::get('product/restore', [ProductController::class, 'restore'])->name('product.restore');
 

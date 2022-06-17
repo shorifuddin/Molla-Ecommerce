@@ -30,14 +30,19 @@ class ProductController extends Controller{
 
     public function insert(Request $request){
         // dd($request->product_gallery);
-        // $validated = $request->validate([
-        //     'product_name' => 'required|max:100',
-
-        // ],[
-        //     'product_name.required'=>'Fill The Prodcategory-Name',
-        //     'product_name.unique'=> 'This Prodcategory-Name already Added',
-
-        // ]);
+        $validated = $request->validate([
+            'product_name' => 'required|max:100',
+            'product_price' => 'required|max:100',
+            'pro_category_id' => 'required|max:100',
+            'brand_id' => 'required|max:100',
+            'product_quantity' => 'required|max:100',
+        ],[
+            'product_name.required'=>'Fill The Product-Name',
+            'product_price.required'=>'Fill The Product-Price',
+            'pro_category_id.required'=>'Fill The Product-Category',
+            'brand_id.required'=>'Fill The Product-Brand',
+            'product_quantity.required'=>'Fill The Product-Quantity',
+        ]);
 
         $insert = Product::insertGetId([
             'product_name' => $request->product_name,
@@ -102,8 +107,16 @@ class ProductController extends Controller{
         // return $request->all();
         $validated = $request->validate([
             'product_name' => 'required|max:100',
+            'product_price' => 'required|max:100',
+            'pro_category_id' => 'required|max:100',
+            'brand_id' => 'required|max:100',
+            'product_quantity' => 'required|max:100',
         ],[
             'product_name.required'=>'Fill The Product-Name',
+            'product_price.required'=>'Fill The Product-Price',
+            'pro_category_id.required'=>'Fill The Product-Category',
+            'brand_id.required'=>'Fill The Product-Brand',
+            'product_quantity.required'=>'Fill The Product-Quantity',
         ]);
 
         $id = $request->product_id;
@@ -122,19 +135,19 @@ class ProductController extends Controller{
             $imgname = $product->product_image;
         }
 
-        if ($request->hasFile('product_gallery')) {
-            if (File::exists('upload/product/gallery/'.$product->product_gallery)) {
-                File::delete('upload/product/gallery/'.$product->product_gallery);
-            }
+        // if ($request->hasFile('product_gallery')) {
+        //     if (File::exists('upload/product/gallery/'.$product->product_gallery)) {
+        //         File::delete('upload/product/gallery/'.$product->product_gallery);
+        //     }
 
-           $gallerys = $request->file('product_gallery');
-           foreach($gallerys as $gallery){
-            $gallery = 'gal'. rand(1000,10000) . '.' .$gallerys->getClientOriginalExtension();
-            Image::make($pic)->save('upload/product/gallery/'.$gallery);
-           }
-        }else{
-            $gallery = $product->product_gallery;
-        }
+        //    $gallerys = $request->file('product_gallery');
+        //    foreach($gallerys as $gallery){
+        //     $gallery = 'gal'. rand(1000,10000) . '.' .$gallerys->getClientOriginalExtension();
+        //     Image::make($pic)->save('upload/product/gallery/'.$gallery);
+        //    }
+        // }else{
+        //     $gallery = $product->product_gallery;
+        // }
 
         $update = Product::where('product_id',$id)->update([
             'product_name' => $request->product_name,
@@ -160,6 +173,49 @@ class ProductController extends Controller{
         }else{
             Session::flash('error','Value');
             return redirect()->route('product.edit',$id);
+        }
+    }
+
+    public function softdelete($id){
+        $softdelete=Product::where('product_status',1)->where('product_id',$id)->update([
+            'product_status'=> 0,
+        ]);
+        if($softdelete){
+            Session::flash('success','Value');
+            return redirect()->route('product.all');
+        }else{
+            Session::flash('error','Value');
+            return redirect()->back();
+        }
+    }
+
+    public function restore(){
+        $alldata=Product::where('product_status',0)->orderBy('product_id','ASC')->get();
+        return view('admin.producat.restore',compact('alldata'));
+    }
+
+    public function restoredata($id){
+        $restore = Product::where('product_status',0)->where('product_id',$id)->update([
+            'product_status'=> 1,
+        ]);
+        if($restore){
+            Session::flash('success','Value');
+            return redirect()->route('product.all');
+        }else{
+            Session::flash('error','Value');
+            return redirect()->back();
+        }
+    }
+
+    public function delete($id){
+        $delete = Product::where('product_status',0)->where('product_id',$id)->delete();
+
+        if ($delete) {
+            Session::flash('success','Value');
+           return redirect()->route('product.all');
+        }else{
+            Session::flash('error','Value');
+            return redirect()->back();
         }
     }
 }

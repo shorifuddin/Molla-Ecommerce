@@ -46,6 +46,33 @@
                     <td>{{ $data->product_discount_price }}</td>
                 </tr>
                 <tr>
+                    <td>Product Image</td>
+                    <td>:</td>
+                    <td>
+                      @if (!empty($data->product_image))
+                        <img class="img-fluid img"  src="{{ asset('upload/product/'.$data->product_image) }}">
+                      @else
+                        <img class="img-fluid img" src="{{ asset('upload/avater.jpg') }}">
+                      @endif
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>Product Gallery Image</td>
+                      <td>:</td>
+                      <td>
+                          @php
+                          $images = explode(',',$data->product_gallery)
+                          @endphp
+                       @if (!empty($data->product_gallery))
+                          @foreach($images as $gal )
+                          <img class="img-fluid img"  src="{{ asset('upload/product/gallery/'.$gal) }}">
+                          @endforeach
+                        @else
+                          <img class="img-fluid img" src="{{ asset('upload/avater.jpg') }}">
+                        @endif
+                      </td>
+                  </tr>
+                <tr>
                     <td>Product Order </td>
                     <td>:</td>
                     <td>{{ $data->product_order}}</td>
@@ -75,28 +102,7 @@
                     <td>:</td>
                     <td>{{ $data->product_description}}</td>
                 </tr>
-                <tr>
-                  <td>Product Image</td>
-                  <td>:</td>
-                  <td>
-                    @if (!empty($data->product_image))
-                      <img class="img-fluid img"  src="{{ asset('upload/product/'.$data->product_image) }}">
-                    @else
-                      <img class="img-fluid img" src="{{ asset('upload/avater.jpg') }}">
-                    @endif
-                  </td>
-                </tr>
-                <tr>
-                    <td>Product Gallery Image</td>
-                    <td>:</td>
-                    <td>
-                      @if (!empty($data->product_gallery))
-                        <img class="img-fluid img"  src="{{ asset('upload/product/gallery/'.$data->product_gallery) }}">
-                      @else
-                        <img class="img-fluid img" src="{{ asset('upload/avater.jpg') }}">
-                      @endif
-                    </td>
-                </tr>
+
             </table>
           </div>
           <div class="col-md-2"></div>

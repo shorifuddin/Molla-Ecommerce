@@ -16,28 +16,29 @@
 						<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 							<thead class="thead-dark">
 								<tr>
+                                    <th>Product Image</th>
 									<th>Product Category</th>
 									<th>Product Name</th>
 									<th>Product Price</th>
 									<th>Product Order</th>
-									<th>Product Image</th>
 									<th>Manage</th>
 								</tr>
 							</thead>
 							<tbody>
                 			@foreach ($alldata as $data)
 								<tr>
-									<td>{{ $data->category->pro_cate_name}}</td>
-									<td>{{ $data->product_name}}</td>
-									<td>{{ $data->product_price}}</td>
-									<td>{{ $data->product_order }}</td>
-									<td>
+                                    <td>
 										@if (!empty($data->product_image))
 										<img class="img-fluid img" src="{{ asset('upload/product/'.$data->product_image) }}">
 										@else
 										<img class="img-fluid img" src="{{ asset('upload/avatar.jpg') }}">
 										@endif
                   					</td>
+									<td>{{ $data->category->pro_cate_name}}</td>
+									<td>{{ Str::words($data->product_name,4)}}</td>
+									<td>{{ $data->product_price}}</td>
+									<td>{{ $data->product_order }}</td>
+
 									<td>
 										<div class="btn-group">
                                             <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,14 +58,14 @@
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
-												<h4 class="modal-title mt-0">Are You Want to Delete it?</h4>
+												<h4 class="modal-title mt-0">Delete Alert?</h4>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true">×</span>
 												</button>
 											</div>
 											<div class="modal-body">
 												<div class="row">
-
+                                                    <h4 class="modal-title mt-0">Are You Want to Delete it?</h4>
 												</div>
 											</div>
 											<div class="modal-footer">
