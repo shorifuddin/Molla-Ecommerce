@@ -26,7 +26,12 @@ class WebsiteController extends Controller
     public function about(){
         return view('website.about');
     }
+
     public function contact(){
         return view('website.contact');
+    }
+
+    public function quick(){
+        return view('website.quick');
     }
 }

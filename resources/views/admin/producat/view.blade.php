@@ -28,12 +28,12 @@
                 <tr>
                   <td>Product Category </td>
                   <td>:</td>
-                  <td>{{ $data->pro_category_id  }}</td>
+                  <td>{{ $data->category->pro_cate_name  }}</td>
                 </tr>
                 <tr>
                   <td>Product Brand</td>
                   <td>:</td>
-                  <td>{{ $data->brand_id}}</td>
+                  <td>{{ $data->brand->brand_name}}</td>
                 </tr>
                 <tr>
                     <td>Product Price</td>

@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="{{asset('content/website')}}/assets/css/plugins/jquery.countdown.css">
 	<link rel="stylesheet" href="{{asset('content/website')}}/assets/css/style.css">
 	<link rel="stylesheet" href="{{asset('content/website')}}/assets/css/skins/skin-demo-3.css">
-	<link rel="stylesheet" href="{{asset('content/website')}}/assets/css/demos/demo-3.css"> 
+	<link rel="stylesheet" href="{{asset('content/website')}}/assets/css/demos/demo-3.css">
 </head>
 <body>
 	<div class="page-wrapper">
@@ -54,12 +54,12 @@
 									</li>
 									@if (Auth::check())
 									<li class="megamenu-container"> <a href="#" >My Account</a></li>
-                                    <li class="megamenu-container"> <a href="#" >Log out</a></li>	
+                                    <li class="megamenu-container"> <a href="#" >Log out</a></li>
 									@else
                                     <li><a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a></li>
                                     <li class="megamenu-container"> <a href="{{ url('contact') }}" >Log in</a></li>
 									@endif
-									
+
 								</ul>
 							</li>
 						</ul>
@@ -161,6 +161,9 @@
 				<!-- End .container -->
 			</div>
 			<!-- End .header-middle -->
+        @php
+            $categories = App\Models\Prodcategory::where('pro_cate_status', 1)->limit(10)->get();
+        @endphp
 			<div class="header-bottom sticky-header">
 				<div class="container">
 					<div class="header-left">
@@ -172,15 +175,9 @@
 									<ul class="menu-vertical sf-arrows">
 										<li class="item-lead"><a href="#">Daily offers</a></li>
 										<li class="item-lead"><a href="#">Gift Ideas</a></li>
-										<li><a href="#">Beds</a></li>
-										<li><a href="#">Lighting</a></li>
-										<li><a href="#">Sofas & Sleeper sofas</a></li>
-										<li><a href="#">Storage</a></li>
-										<li><a href="#">Armchairs & Chaises</a></li>
-										<li><a href="#">Decoration </a></li>
-										<li><a href="#">Kitchen Cabinets</a></li>
-										<li><a href="#">Coffee & Tables</a></li>
-										<li><a href="#">Outdoor Furniture </a></li>
+                                    @foreach ( $categories as $category)
+										<li><a href="#">{{ $category->pro_cate_name}}</a></li>
+                                    @endforeach
 									</ul>
 									<!-- End .menu-vertical -->
 								</nav>
@@ -328,20 +325,17 @@
 					<!-- End .mobile-nav -->
 				</div>
 				<!-- .End .tab-pane -->
+        @php
+            $categories = App\Models\Prodcategory::where('pro_cate_status', 1)->limit(6)->get();
+        @endphp
 				<div class="tab-pane fade" id="mobile-cats-tab" role="tabpanel" aria-labelledby="mobile-cats-link">
 					<nav class="mobile-cats-nav">
 						<ul class="mobile-cats-menu">
 							<li><a class="mobile-cats-lead" href="#">Daily offers</a></li>
 							<li><a class="mobile-cats-lead" href="#">Gift Ideas</a></li>
-							<li><a href="#">Beds</a></li>
-							<li><a href="#">Lighting</a></li>
-							<li><a href="#">Sofas & Sleeper sofas</a></li>
-							<li><a href="#">Storage</a></li>
-							<li><a href="#">Armchairs & Chaises</a></li>
-							<li><a href="#">Decoration </a></li>
-							<li><a href="#">Kitchen Cabinets</a></li>
-							<li><a href="#">Coffee & Tables</a></li>
-							<li><a href="#">Outdoor Furniture </a></li>
+                            @foreach ( $categories as $category)
+							<li><a href="#">{{ $category->pro_cate_name}}</a></li>
+							@endforeach
 						</ul>
 						<!-- End .mobile-cats-menu -->
 					</nav>
@@ -367,7 +361,7 @@
 							<ul class="nav nav-pills nav-fill nav-border-anim" role="tablist">
 								<li class="nav-item"> <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="true">Sign In</a> </li>
 								<li class="nav-item"> <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a> </li>
-                                
+
 							</ul>
 							<div class="tab-content" id="tab-content-5">
 								<div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">

@@ -38,6 +38,7 @@ Route::get('product', [WebsiteController::class, 'product']);
 Route::get('blog', [WebsiteController::class, 'blog']);
 Route::get('contact', [WebsiteController::class, 'contact']);
 Route::get('about', [WebsiteController::class, 'about']);
+Route::get('quick', [WebsiteController::class, 'quick']);
 
 // <<===== ADMIN ROUTE LIST ======>>
 Route::get('/dashboard', [AdminController::class, 'index']);
