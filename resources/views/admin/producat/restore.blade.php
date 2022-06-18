@@ -47,14 +47,14 @@
                                                 <ul class="dropdown-menu">
 
                                                     <li><a href="{{ url('/dashboard/product/restoredata/'.$data->product_id) }}" class="dropdown-item">Restore</a></li>
-                                                    <li><a  class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                                                    <li><a  class="dropdown-item" data-toggle="modal" data-target="#con-close-modal{{ $data->product_id }}">Delete</a></li>
 
                                                 </ul>
                                             </div>
                                         </td>
 								    </tr>
                                     {{-- Modal --}}
-								<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+								<div id="con-close-modal{{ $data->product_id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">

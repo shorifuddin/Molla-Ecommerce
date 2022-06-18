@@ -276,10 +276,11 @@
                                 }
                             }
                         }'>
+
          @php
-        $product = App\Models\Product::orderBy('product_id','DESC')->where('product_status', 1)->where('pro_category_id', 3)->limit(6)->get();
-         @endphp
-            @foreach ($product as $phone)
+            $products = App\Models\Product::where('pro_category_id', $data->pro_category_id)->orderBy('product_id', 'DESC')->get();
+        @endphp
+            @foreach ($products as $phone)
 
                         <div class="product product-7 text-center">
                             <figure class="product-media">
@@ -350,6 +351,7 @@
                             </div><!-- End .product-body -->
                         </div><!-- End .product -->
         @endforeach
+
                     </div><!-- End .owl-carousel -->
                 </div><!-- End .container -->
             </div><!-- End .page-content -->

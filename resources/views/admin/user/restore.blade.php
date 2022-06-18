@@ -65,7 +65,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
                         <ul class="dropdown-menu">
                            @if(Auth::user()->role=='1' )
                             <li><a href="{{  url('/dashboard/user/restore/'.$data->id) }}" class="dropdown-item">Edit</a></li>
-                            <li><a class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                            <li><a class="dropdown-item" data-toggle="modal" data-target="#con-close-modal{{ $data->id }}">Delete</a></li>
                             @endif
                         </ul>
                     </div>
@@ -73,7 +73,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
                   </td>
                 </tr>
                 {{-- Modal --}}
-					<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+					<div id="con-close-modal{{ $data->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">

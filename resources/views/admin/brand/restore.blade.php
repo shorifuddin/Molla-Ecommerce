@@ -41,7 +41,7 @@
 										@if(Auth::user()->role=='1' )
 										<a href="{{ url('/dashboard/brand/restoredata/'.$data->brand_id) }}">
 										<i class="md md-border-color colors"></i></a>
-                                        <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Delete</button>
+                                        <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal{{ $data->brand_id}}">Delete</button>
                                         {{-- @if(Auth::user()->role=='1' )
 										<a href="{{ url('/dashboard/brand/restoredata/'.$data->brand_id) }}">
 											<i class="md-cached colors"></i></a>
@@ -50,7 +50,7 @@
 										@endif
                                     </td>
 								</tr>
-                                <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+                                <div id="con-close-modal{{ $data->brand_id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">

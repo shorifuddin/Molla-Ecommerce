@@ -60,7 +60,9 @@
                                                 <li><a href="{{ url('dashboard/procatrgory/view/'.$data->pro_cate_id ) }}" class="dropdown-item">View</a></li>
                                                 @if(Auth::user()->role=='1' )
                                                 <li><a href="{{ url('dashboard/procatrgory/edit/'.$data->pro_cate_id ) }}" class="dropdown-item">Edit</a></li>
-                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                                                <li>
+                                                    <button  class="dropdown-item" data-toggle="modal" data-target="#con-close-modal{{ $data->pro_cate_id }}">Delete</button>
+                                                </li>
                                                 @endif
                                             </ul>
                                         </div>
@@ -76,7 +78,7 @@
                   					</td>
 								</tr>
 								{{-- Modal --}}
-								<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+								<div id="con-close-modal{{ $data->pro_cate_id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">

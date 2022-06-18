@@ -52,14 +52,14 @@
 
                                                 @if(Auth::user()->role=='1' )
                                                 <li><a href="{{ url('/dashboard/partner/restoredata/'.$data->partner_id) }}" class="dropdown-item">Restore</a></li>
-                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#con-close-modal">Delete</a></li>
+                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#con-close-modal{{ $data->partner_id }}">Delete</a></li>
                                                 @endif
                                             </ul>
                                         </div>
 
                  					 </td>
 								</tr>
-                                <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+                                <div id="con-close-modal{{ $data->partner_id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">

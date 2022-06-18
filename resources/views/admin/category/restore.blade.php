@@ -49,13 +49,13 @@
 											<i class="md-cached colors"></i></a>
 										{{-- <a href="{{ url('/dashboard/brand/softdelete/'.$data->brand_id) }}">
 											<i class="md md-delete colors"></i></a>  --}}
-										<button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Delete</button>
+										<button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal{{ $data->pro_cate_id}}">Delete</button>
 
 										@endif
                   					</td>
 								</tr>
 								{{-- Modal --}}
-								<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+								<div id="con-close-modal{{ $data->pro_cate_id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">

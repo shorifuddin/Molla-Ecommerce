@@ -191,12 +191,21 @@
 					<div class="header-center">
 						<nav class="main-nav">
 							<ul class="menu sf-arrows">
-								<li class=" active"> <a href="{{ url('/') }}" >Home</a></li>
-                                <li> <a href="{{ url('shop') }}">Shop</a></li>
-                                <li> <a href="{{ url('product') }}">Product</a></li>
-                                <li> <a href="{{ url('blog') }}">Blog</a></li>
-                                <li> <a href="{{ url('about') }}">About</a></li>
-                                <li> <a href="{{ url('contact') }}">Contact</a></li>
+								<li class=" {{ '/' == request()->path() ? 'active' : '' }}">
+                                    <a href="{{ url('/') }}">Home</a>
+                                </li >
+                                <li class="{{ 'shop' == request()->path() ? 'active' : '' }}" >
+                                    <a href="{{ url('shop') }}">Shop</a>
+                                </li>
+                                <li class=" {{ 'product' == request()->path() ? 'active' : '' }}">
+                                    <a href="{{ url('product') }}" >Product</a>
+                                </li>
+                                <li class=" {{ 'about' == request()->path() ? 'active' : '' }}">
+                                    <a href="{{ url('about') }}">About</a>
+                                </li>
+                                <li class=" {{ 'contact' == request()->path() ? 'active' : '' }}">
+                                    <a href="{{ url('contact') }}">Contact</a>
+                                </li>
 							</ul>
 							<!-- End .menu -->
 						</nav>
@@ -315,11 +324,21 @@
 				<div class="tab-pane fade show active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
 					<nav class="mobile-nav">
 						<ul class="mobile-menu">
-							<li class="active"> <a href="{{ url('/') }}">Home</a></li>
-							<li> <a href="{{ url('shope') }}">Shop</a></li>
-							<li> <a href="{{ url('product') }}" class="sf-with-ul">Product</a></li>
-                            <li> <a href="{{ url('about') }}">About</a></li>
-                            <li> <a href="{{ url('contact') }}">Contact</a></li>
+							<li class=" {{ '/' == request()->path() ? 'active' : '' }}">
+                                <a href="{{ url('/') }}">Home</a>
+                            </li >
+							<li {{ 'shop' == request()->path() ? 'active' : '' }}>
+                                <a href="{{ url('shop') }}">Shop</a>
+                            </li>
+							<li class=" {{ 'product' == request()->path() ? 'active' : '' }}">
+                                <a href="{{ url('product') }}" class="sf-with-ul">Product</a>
+                            </li>
+                            <li class=" {{ 'about' == request()->path() ? 'active' : '' }}">
+                                <a href="{{ url('about') }}">About</a>
+                            </li>
+                            <li class=" {{ 'contact' == request()->path() ? 'active' : '' }}">
+                                <a href="{{ url('contact') }}">Contact</a>
+                            </li>
 						</ul>
 					</nav>
 					<!-- End .mobile-nav -->
