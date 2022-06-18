@@ -151,17 +151,17 @@
 
                             <span class="product-label label-circle label-new">New</span>
 
-							<a href=""> <img src="{{asset('upload/product/'.$featdata->product_image)}}" alt="Product image" class="product-image"> </a>
+							<a href="{{ url('productview/'.$featdata->product_slug) }}"> <img src="{{asset('upload/product/'.$featdata->product_image)}}" alt="Product image" class="product-image"> </a>
 							<div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
 							<!-- End .product-action -->
-							<div class="product-action product-action-dark"> <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> <a href="{{ url('quick') }}" class="btn-product btn-quickview" title="Quick view"><span>view</span></a> </div>
+							<div class="product-action product-action-dark"> <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> <a href="{{ url('productview/'.$featdata->product_slug) }}" class="btn-product btn-quickview" title="Quick view"><span>view</span></a> </div>
 							<!-- End .product-action -->
 						</figure>
 						<!-- End .product-media -->
 						<div class="product-body">
-							<div class="product-cat"> <a href="#">{{ $featdata->category->pro_cate_name  }}</a> </div>
+							<div class="product-cat"> <a href="{{ url('productview/'.$featdata->product_slug) }}">{{ $featdata->category->pro_cate_name  }}</a> </div>
 							<!-- End .product-cat -->
-							<h3 class="product-title"><a href="">{{ $featdata->product_name}}</a></h3>
+							<h3 class="product-title"><a href="{{ url('productview/'.$featdata->product_slug) }}">{{ $featdata->product_name}}</a></h3>
 							<!-- End .product-title -->
 							<div class="product-price">৳ {{ $featdata->product_price}} </div>
 							<!-- End .product-price -->
@@ -503,9 +503,9 @@
                      </li>
 
                     @foreach ( $categories as $category)
-                        <li class="nav-item">
-                    <a class="nav-link" id="{{ $category->pro_cate_slug}}" data-toggle="tab" href="#{{ $category->pro_cate_slug}}" role="tab" aria-controls="{{ $category->pro_cate_slug}}" aria-selected="false">{{ $category->pro_cate_name}}</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="{{ $category->pro_cate_slug}}" data-toggle="tab" href="#{{ $category->pro_cate_slug}}" role="tab" aria-controls="{{ $category->pro_cate_slug}}" aria-selected="false">{{ $category->pro_cate_name}}</a>
+                    </li>
                     @endforeach
 
                 </ul>

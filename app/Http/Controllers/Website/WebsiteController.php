@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Prodcategory;
 
 class WebsiteController extends Controller
 {
@@ -31,7 +33,8 @@ class WebsiteController extends Controller
         return view('website.contact');
     }
 
-    public function quick(){
-        return view('website.quick');
+    public function productview($slug){
+        $data=Product::where('product_status',1)->where('product_slug',$slug)->first();
+        return view('website.product',compact('data'));
     }
 }

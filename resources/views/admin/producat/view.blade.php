@@ -95,12 +95,12 @@
                 <tr>
                     <td>Product Details</td>
                     <td>:</td>
-                    <td>{{ $data->product_detils}}</td>
+                    <td>{!! $data->product_detils !!}</td>
                 </tr>
                 <tr>
                     <td>Product Description </td>
                     <td>:</td>
-                    <td>{{ $data->product_description}}</td>
+                    <td>{!! $data->product_detils !!}</td>
                 </tr>
 
             </table>
