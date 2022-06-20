@@ -46,7 +46,7 @@
                                             @endphp
                                              @if (!empty($data->product_gallery))
                                             @foreach($images as $gal )
-                                            <a class="product-gallery-item active" href="#" data-image="{{ asset('upload/product/gallery/'.$gal) }}" data-zoom-image="{{ asset('upload/product/gallery/'.$gal) }}">
+                                            <a class="product-gallery-item" href="#" data-image="{{ asset('upload/product/gallery/'.$gal) }}" data-zoom-image="product-zoom-gallery">
                                                 <img src="{{ asset('upload/product/gallery/'.$gal) }}" alt="product side">
                                             </a>
                                             @endforeach

@@ -176,8 +176,49 @@
 										<li class="item-lead"><a href="#">Daily offers</a></li>
 										<li class="item-lead"><a href="#">Gift Ideas</a></li>
                                     @foreach ( $categories as $category)
-										<li><a href="#">{{ $category->pro_cate_name}}</a></li>
+                                    <li>
+                                        <a href="#">{{ $category->pro_cate_name }}</a>
+                                        @php
+                                            $sub_category = App\Models\Prodcategory::where('pro_cate_status', 1)->where('pro_cate_parent', $category->pro_cate_id)->get();
+                                            $sub_cat_count = App\Models\Prodcategory::where('pro_cate_status', 1)->where('pro_cate_parent', $category->pro_cate_id)->get()->count();
+                                        @endphp
+                                        @if ($sub_cat_count != 0)
+                                        <ul>
+                                            @foreach ($sub_category as $sub_cat)
+                                            <li>
+                                                <a href="about.html">{{ $sub_cat->pro_cate_name }}</a>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                        @endif
+                                    </li>
                                     @endforeach
+                                    {{-- <li><a href="#">{{ $category->pro_cate_name}}</a></li> --}}
+                                    {{-- <li>
+                                        <a href="#">Pages</a>
+                                        <ul>
+                                            <li>
+                                                <a href="about.html">About</a>
+
+                                                <ul>
+                                                    <li><a href="about.html">About 01</a></li>
+                                                    <li><a href="about-2.html">About 02</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="contact.html">Contact</a>
+
+                                                <ul>
+                                                    <li><a href="contact.html">Contact 01</a></li>
+                                                    <li><a href="contact-2.html">Contact 02</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="login.html">Login</a></li>
+                                            <li><a href="faq.html">FAQs</a></li>
+                                            <li><a href="404.html">Error 404</a></li>
+                                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                                        </ul>
+                                    </li> --}}
 									</ul>
 									<!-- End .menu-vertical -->
 								</nav>
@@ -206,6 +247,7 @@
                                 <li class=" {{ 'contact' == request()->path() ? 'active' : '' }}">
                                     <a href="{{ url('contact') }}">Contact</a>
                                 </li>
+
 							</ul>
 							<!-- End .menu -->
 						</nav>
