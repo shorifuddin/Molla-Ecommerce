@@ -1,6 +1,6 @@
 @extends('layouts.website')
 @section('content')
- 
+
 <main class="main">
 	<div class="page-header text-center" style="background-image: url('{{asset('content/website')}}/assets/images/page-header-bg.jpg')">
 		<div class="container">
@@ -24,17 +24,20 @@
 		<!-- End #map -->
 		<div class="container">
 			<div class="row">
+                @php
+                    $contactinfo = App\Models\Contactinfo::where('contact_status',1)->where('contact_id',1)->first();
+                @endphp
 				<div class="col-md-4">
 					<div class="contact-box text-center">
-						<h3>Office</h3> <address>1 New York Plaza, New York, <br>NY 10004, USA</address> </div>
+						<h3>Office</h3> <address>{{ $contactinfo->contact_address_one }} <br>{{ $contactinfo->contact_address_two }}</address> </div>
 					<!-- End .contact-box -->
 				</div>
 				<!-- End .col-md-4 -->
 				<div class="col-md-4">
 					<div class="contact-box text-center">
 						<h3>Start a Conversation</h3>
-						<div><a href="mailto:#">info@Molla.com</a></div>
-						<div><a href="tel:#">+1 987-876-6543</a>, <a href="tel:#">+1 987-976-1234</a></div>
+						<div><a href="mailto:#">{{ $contactinfo->contact_email_two }} </a></div>
+						<div><a href="tel:#">+1 {{ $contactinfo->contact_phone_one}} </a>, <a href="tel:#">+1 {{ $contactinfo->contact_phone_two}}</a></div>
 					</div>
 					<!-- End .contact-box -->
 				</div>
@@ -42,7 +45,16 @@
 				<div class="col-md-4">
 					<div class="contact-box text-center">
 						<h3>Social</h3>
-						<div class="social-icons social-icons-color justify-content-center"> <a href="#" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a> <a href="#" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a> <a href="#" class="social-icon social-instagram" title="Instagram" target="_blank"><i class="icon-instagram"></i></a> <a href="#" class="social-icon social-youtube" title="Youtube" target="_blank"><i class="icon-youtube"></i></a> <a href="#" class="social-icon social-pinterest" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a> </div>
+                        @php
+                            $social = App\Models\socialmedia::where('sm_status',1)->where('sm_id',1)->first();
+                        @endphp
+						<div class="social-icons social-icons-color justify-content-center">
+                             <a href="{{ $social->sm_facebook }}" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                             <a href="{{ $social->sm_twitter }}" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                             <a href="{{ $social->sm_instagram }}" class="social-icon social-instagram" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                             <a href="{{ $social->sm_youtube }}" class="social-icon social-youtube" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
+                             <a href="{{ $social->sm_google }}" class="social-icon social-google" title="google" target="_blank"><i class="icon-google"></i></a>
+                        </div>
 						<!-- End .soial-icons -->
 					</div>
 					<!-- End .contact-box -->

@@ -449,6 +449,9 @@
 	</div>
 	<!-- End .deal-container -->
 	<div class="container">
+        @php
+            $partners = App\Models\Partner::where('partner_status',1)->orderBy('partner_id','DESC')->get();
+        @endphp
 		<div class="owl-carousel mt-5 mb-5 owl-simple" data-toggle="owl" data-owl-options='{
                             "nav": false,
                             "dots": false,
@@ -472,13 +475,10 @@
                                 }
                             }
                         }'>
-			<a href="#" class="brand"> <img src="{{asset('content/website')}}/assets/images/brands/1.png" alt="Brand Name"> </a>
-			<a href="#" class="brand"> <img src="{{asset('content/website')}}/assets/images/brands/2.png" alt="Brand Name"> </a>
-			<a href="#" class="brand"> <img src="{{asset('content/website')}}/assets/images/brands/3.png" alt="Brand Name"> </a>
-			<a href="#" class="brand"> <img src="{{asset('content/website')}}/assets/images/brands/4.png" alt="Brand Name"> </a>
-			<a href="#" class="brand"> <img src="{{asset('content/website')}}/assets/images/brands/5.png" alt="Brand Name"> </a>
-			<a href="#" class="brand"> <img src="{{asset('content/website')}}/assets/images/brands/6.png" alt="Brand Name"> </a>
-		</div>
+            @foreach ( $partners as $partner)
+                <a href="{{ $partner->partner_url}}" class="brand"> <img src="{{ asset('upload/partner/'.$partner->partner_logo) }}" alt="Brand Name"> </a>
+			@endforeach
+			</div>
 		<!-- End .owl-carousel -->
 	</div>
 	<!-- End .container -->

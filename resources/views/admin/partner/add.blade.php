@@ -15,7 +15,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
 
 <div class="row container">
   <div class="col-md-12 container">
-    <form method="POST" action="{{ url('dashboard/product/insert') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('dashboard/partner/submit') }}" enctype="multipart/form-data">
       @csrf
      <div class="card">
       <div class="card-header bg-secondary card_header">
@@ -24,7 +24,7 @@ swal({ title: "Good error!",text: "You clicked the button!", icon: "error",});
               <i class="md md-add-circle"></i> UPLOAD Partner
             </div>
             <div class="col-md-4 card_header_btn ">
-            <a href="{{ url('dashboard/product/all') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All Partner</a>
+            <a href="{{ url('dashboard/partner/all') }}" class="btn btn-xs btn-dark " style="float: right; color:white;"><i class="md md-view-module"></i> All Partner</a>
            </div>
           </div>
       </div>

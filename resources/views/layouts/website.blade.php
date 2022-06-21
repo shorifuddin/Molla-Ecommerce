@@ -23,7 +23,10 @@
 		<header class="header header-intro-clearance header-3">
 			<div class="header-top">
 				<div class="container">
-					<div class="header-left"> <a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a> </div>
+                    @php
+                        $contactinfo = App\Models\Contactinfo::where('contact_status',1)->where('contact_id',1)->first();
+                    @endphp
+					<div class="header-left"> <a href="tel:#"><i class="icon-phone"></i>Call: {{ $contactinfo->contact_phone_two }}</a> </div>
 					<!-- End .header-left -->
 					<div class="header-right">
 						<ul class="top-menu">
@@ -269,10 +272,13 @@
 			<div class="footer-middle">
 				<div class="container">
 					<div class="row">
+                        @php
+                            $contactinfo = App\Models\Contactinfo::where('contact_status',1)->where('contact_id',1)->first();
+                        @endphp
 						<div class="col-sm-6 col-lg-3">
 							<div class="widget widget-about"> <img src="{{asset('content/website')}}/assets/images/demos/demo-3/logo-footer.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
 								<p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
-								<div class="widget-call"> <i class="icon-phone"></i> Got Question? Call us 24/7 <a href="tel:#">+0123 456 789</a> </div>
+								<div class="widget-call"> <i class="icon-phone"></i> Got Question? Call us 24/7 <a href="tel:#">{{ $contactinfo->contact_phone_one }}</a> </div>
 								<!-- End .widget-call -->
 							</div>
 							<!-- End .widget about-widget -->
