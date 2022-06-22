@@ -240,6 +240,11 @@
                         </ul>
                      </li>
                   @endif
+                    <li>
+                        <a href="{{ url('dashboard/recycle') }}" class="waves-effect"><i class="md-delete"></i>
+                            <span> Recycle Bin </span>
+                        </a>
+                    </li>
                      <li>
                          <a href="{{ url('/') }}" class="waves-effect"><i class="md-public"></i>
                             <span> Live Site </span>

@@ -9,8 +9,10 @@ use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProducatCategoryController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\RecycleController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Website\WebsiteController;
+use App\Http\Controllers\Website\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +41,14 @@ Route::get('blog', [WebsiteController::class, 'blog']);
 Route::get('contact', [WebsiteController::class, 'contact']);
 Route::get('about', [WebsiteController::class, 'about']);
 Route::get('productview/{slug}', [WebsiteController::class, 'productview']);
+Route::get('cartitem', [WebsiteController::class, 'cartitem']);
 
+// <<===== CART ROUTE LIST ======>>
+Route::group(['prefix' => 'cart'], function() {
+    Route::get('/',[ CartController::class, 'index'])->name('cart.index');
+    Route::get('/{slug}',[ CartController::class, 'store'])->name('cart.store');
+    Route::get('/delete/{id}',[ CartController::class, 'destroy'])->name('cart.destroy');
+});
 // <<===== ADMIN ROUTE LIST ======>>
 Route::get('/dashboard', [AdminController::class, 'index']);
 Route::get('/logout', [AdminController::class, 'logout']);
@@ -54,7 +63,7 @@ Route::get('user/all', [UserController::class, 'all']);
 Route::get('user/view/{id}', [UserController::class, 'view']);
 Route::get('user/edit/{id}', [UserController::class, 'edit']);
 Route::get('user/softdelete/{id}', [UserController::class, 'softdelete']);
-Route::get('user/restore', [UserController::class, 'restoredata']);
+Route::get('user/restore', [UserController::class, 'restoredata'])->name('user.restore');
 Route::get('user/restore/{id}', [UserController::class, 'restore']);
 Route::get('user/delete/{id}', [UserController::class, 'delete']);
 Route::get('user/tb', [UserController::class, 'tb']);
@@ -76,7 +85,7 @@ Route::post('banner/submit', [BannerController::class, 'insert']);
 Route::post('banner/update', [BannerController::class, 'update']);
 Route::get('banner/softdelete/{ban_id}', [BannerController::class, 'softdelete']);
 Route::get('banner/restore/{ban_id}', [BannerController::class, 'restore']);
-Route::get('banner/restore', [BannerController::class, 'restoredata']);
+Route::get('banner/restore', [BannerController::class, 'restoredata'])->name('banner.restore');
 Route::get('banner/delete/{ban_id}', [BannerController::class, 'delete']);
 
 // <<===== BRAND ROUTE LIST ======>>
@@ -90,7 +99,7 @@ Route::get('banner/delete/{ban_id}', [BannerController::class, 'delete']);
         Route::get('edit/{brand_id}', [BrandController::class, 'edit']);
         Route::get('view/{brand_id}', [BrandController::class, 'view']);
         Route::get('softdelete/{brand_id}', [BrandController::class, 'softdelete']);
-        Route::get('restore', [BrandController::class, 'restore']);
+        Route::get('restore', [BrandController::class, 'restore'])->name('brand.restore');
         Route::get('restoredata/{brand_id}', [BrandController::class, 'restoredata']);
         Route::get('delete/{brand_id}', [BrandController::class, 'delete']);
     });
@@ -105,7 +114,7 @@ Route::get('partner/all', [PartnerController::class, 'all'])->name('partner.all'
 Route::get('partner/edit/{id}', [PartnerController::class, 'edit']);
 Route::get('partner/view/{id}', [PartnerController::class, 'view']);
 Route::get('partner/softdelete/{id}', [PartnerController::class, 'softdelete']);
-Route::get('partner/restore', [PartnerController::class, 'restore']);
+Route::get('partner/restore', [PartnerController::class, 'restore'])->name('partner.restore');
 Route::get('partner/restoredata/{id}', [PartnerController::class, 'restoredata']);
 Route::get('partner/delete/{id}', [PartnerController::class, 'delete']);
 
@@ -143,6 +152,10 @@ Route::get('product/softdelete/{id}', [ProductController::class, 'softdelete'])-
 Route::get('product/restore', [ProductController::class, 'restore'])->name('product.restore');
 Route::get('product/restoredata/{id}', [ProductController::class, 'restoredata'])->name('product.restoredata');
 Route::get('product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+
+// <<===== PRODUCT ROUTE  LIST ======>>
+Route::get('recycle', [RecycleController::class, 'index'])->name('recycle');
+
 
 // Route::get('product/restore', [ProductController::class, 'restore'])->name('product.restore');
 

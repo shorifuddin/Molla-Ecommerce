@@ -567,7 +567,7 @@
                                     </div>
                                     <!-- End .product-action -->
                                     <div class="product-action product-action-dark">
-                                        <a href="#" class="btn-product btn-cart" title="Add to cart">
+                                        <a href="{{route('cart.store',$allproducat->product_slug ) }}" class="btn-product btn-cart" title="Add to cart">
                                             <span>add to cart</span>
                                         </a>
                                         <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view">

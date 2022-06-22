@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Prodcategory;
+use Cart;
 
 class WebsiteController extends Controller
 {
@@ -37,4 +38,6 @@ class WebsiteController extends Controller
         $data=Product::where('product_status',1)->where('product_slug',$slug)->first();
         return view('website.product',compact('data'));
     }
+
+
 }
