@@ -114,12 +114,12 @@
 	<!-- End .intro-section -->
 	<div class="container featured">
 		<ul class="nav nav-pills nav-border-anim nav-big justify-content-center mb-3" role="tablist">
-			<li class="nav-item"> <a class="nav-link active" id="products-featured-link" data-toggle="tab" href="#products-featured-tab" role="tab" aria-controls="products-featured-tab" aria-selected="true">Featured</a> </li>
-			<li class="nav-item"> <a class="nav-link" id="products-sale-link" data-toggle="tab" href="#products-sale-tab" role="tab" aria-controls="products-sale-tab" aria-selected="false">On Sale</a> </li>
+			<li class="nav-item"> <a class="nav-link active" id="products-featured-link" data-toggle="tab" href="#products-featured-tab" role="tab" aria-controls="products-featured-tab" aria-selected="false" >Featured</a> </li>
+			<li class="nav-item"> <a class="nav-link" id="products-sale-link" data-toggle="tab" href="#products-sale-tab" role="tab" aria-controls="products-sale-tab" aria-selected="true">On Sale</a> </li>
 			<li class="nav-item"> <a class="nav-link" id="products-top-link" data-toggle="tab" href="#products-top-tab" role="tab" aria-controls="products-top-tab" aria-selected="false">Top Rated</a> </li>
 		</ul>
 		<div class="tab-content tab-content-carousel">
-			<div class="tab-pane p-0 fade show active" id="products-featured-tab" role="tabpanel" aria-labelledby="products-featured-link">
+			<div class="tab-pane p-0 fade " id="products-featured-tab" role="tabpanel" aria-labelledby="products-featured-link">
 				<div class="owl-carousel owl-full carousel-equal-height carousel-with-shadow" data-toggle="owl" data-owl-options='{
                                 "nav": true,
                                 "dots": true,
@@ -129,7 +129,7 @@
                                     "0": {
                                         "items":2
                                     },
-                                    "600": {
+                                    "600": {tured
                                         "items":2
                                     },
                                     "992": {
@@ -146,35 +146,42 @@
 
                 @foreach ( $productfeat as $featdata )
 
-					<div class="product product-2">
-						<figure class="product-media">
+                <div class="product product-2">
+                    <figure class="product-media">
 
-                            <span class="product-label label-circle label-new">New</span>
+                       <span class="product-label label-circle label-top">Sale</span>
 
-							<a href="{{ url('productview/'.$featdata->product_slug) }}"> <img src="{{asset('upload/product/'.$featdata->product_image)}}" alt="Product image" class="product-image"> </a>
-							<div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
-							<!-- End .product-action -->
-							<div class="product-action product-action-dark"> <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> <a href="{{ url('productview/'.$featdata->product_slug) }}" class="btn-product btn-quickview" title="Quick view"><span>view</span></a> </div>
-							<!-- End .product-action -->
-						</figure>
-						<!-- End .product-media -->
-						<div class="product-body">
-							<div class="product-cat"> <a href="{{ url('productview/'.$featdata->product_slug) }}">{{ $featdata->category->pro_cate_name  }}</a> </div>
-							<!-- End .product-cat -->
-							<h3 class="product-title"><a href="{{ url('productview/'.$featdata->product_slug) }}">{{ Str::words($featdata->product_name,6)}}</a></h3>
-							<!-- End .product-title -->
-							<div class="product-price">৳ {{ $featdata->product_price}} </div>
-							<!-- End .product-price -->
-							<div class="ratings-container">
-								<div class="ratings">
-									<div class="ratings-val" style="width: 60%;"></div>
-									<!-- End .ratings-val -->
-								</div>
-								<!-- End .ratings --><span class="ratings-text">( 2 Reviews )</span> </div>
-							<!-- End .rating-container -->
-						</div>
-						<!-- End .product-body -->
-					</div>
+                        <a href="{{ url('productview/'.$featdata->product_slug) }}"> <img src="{{asset('upload/product/'.$featdata->product_image)}}" alt="Product image" class="product-image"> </a>
+                        <div class="product-action-vertical">
+                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable">
+                                <span>add to wishlist</span>
+                            </a>
+                        </div>
+                        <!-- End .product-action -->
+                        <div class="product-action product-action-dark">
+                            <a href="{{route('cart.store',$featdata->product_slug ) }}" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+                            <a href="{{ url('productview/'.$featdata->product_slug) }}" class="btn-product btn-quickview" title="Quick view"><span>view</span></a>
+                        </div>
+                        <!-- End .product-action -->
+                    </figure>
+                    <!-- End .product-media -->
+                    <div class="product-body">
+                        <div class="product-cat"> <a href="#">{{ Str::words($featdata->category->pro_cate_name,5) }}</a> </div>
+                        <!-- End .product-cat -->
+                        <h3 class="product-title"><a href="">{{ Str::words($featdata->product_name,6) }}</a></h3>
+                        <!-- End .product-title -->
+                        <div class="product-price">৳ {{ $featdata->product_price}} </div>
+                        <!-- End .product-price -->
+                        <div class="ratings-container">
+                            <div class="ratings">
+                                <div class="ratings-val" style="width: 70%;"></div>
+                                <!-- End .ratings-val -->
+                            </div>
+                            <!-- End .ratings --><span class="ratings-text">( 11 Reviews )</span> </div>
+                        <!-- End .rating-container -->
+                    </div>
+                    <!-- End .product-body -->
+                </div>
 					<!-- End .product -->
                 @endforeach
 
@@ -182,7 +189,7 @@
 				<!-- End .owl-carousel -->
 			</div>
 			<!-- .End .tab-pane -->
-			<div class="tab-pane p-0 fade" id="products-sale-tab" role="tabpanel" aria-labelledby="products-sale-link">
+			<div class="tab-pane p-0 fade show active" id="products-sale-tab" role="tabpanel" aria-labelledby="products-sale-link">
 				<div class="owl-carousel owl-full carousel-equal-height carousel-with-shadow" data-toggle="owl" data-owl-options='{
                                 "nav": true,
                                 "dots": true,
@@ -217,7 +224,10 @@
 							<a href="{{ url('productview/'.$saledata->product_slug) }}"> <img src="{{asset('upload/product/'.$saledata->product_image)}}" alt="Product image" class="product-image"> </a>
 							<div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
 							<!-- End .product-action -->
-							<div class="product-action product-action-dark"> <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> <a href="" class="btn-product btn-quickview" title="Quick view"><span>view</span></a> </div>
+							<div class="product-action product-action-dark">
+                                 <a href="{{route('cart.store',$saledata->product_slug ) }}" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+                                 <a href="{{ url('productview/'.$saledata->product_slug) }}" class="btn-product btn-quickview" title="Quick view"><span>view</span></a>
+                            </div>
 							<!-- End .product-action -->
 						</figure>
 						<!-- End .product-media -->
@@ -279,7 +289,12 @@
 							<a href="{{ url('productview/'.$topdata->product_slug) }}"> <img src="{{asset('upload/product/'.$topdata->product_image)}}" alt="Product image" class="product-image"> </a>
 							<div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
 							<!-- End .product-action -->
-							<div class="product-action product-action-dark"> <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a> </div>
+							<div class="product-action product-action-dark">
+                                <a href="{{route('cart.store',$topdata->product_slug ) }}" class="btn-product btn-cart" title="Add to cart">
+                                    <span>add to cart</span>
+                                </a>
+                                <a href="{{ url('productview/'.$topdata->product_slug) }}" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                            </div>
 							<!-- End .product-action -->
 						</figure>
 						<!-- End .product-media -->
@@ -570,7 +585,7 @@
                                         <a href="{{route('cart.store',$allproducat->product_slug ) }}" class="btn-product btn-cart" title="Add to cart">
                                             <span>add to cart</span>
                                         </a>
-                                        <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view">
+                                        <a href="{{ url('productview/'.$allproducat->product_slug) }}" class="btn-product btn-quickview" title="Quick view">
                                             <span> view</span>
                                         </a>
                                     </div>
@@ -643,7 +658,7 @@
                                     <a href="{{ url('productview/'.$catproducat->product_slug) }}"> <img src="{{asset('upload/product/'.$catproducat->product_image)}}" alt="Product image" class="product-image"> </a>
                                     <div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
                                     <!-- End .product-action -->
-                                    <div class="product-action product-action-dark"> <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>view</span></a> </div>
+                                    <div class="product-action product-action-dark"> <a href="{{route('cart.store',$catproducat->product_slug ) }}" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> <a href="{{ url('productview/'.$allproducat->product_slug) }} class="btn-product btn-quickview" title="Quick view"><span>view</span></a> </div>
                                     <!-- End .product-action -->
                                 </figure>
                                 <!-- End .product-media -->
@@ -749,7 +764,7 @@
                                     <a href="{{ url('productview/'.$topproduct->product_slug) }}"> <img src="{{asset('upload/product/'.$topproduct->product_image)}}" alt="Product image" class="product-image"> </a>
                                     <div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
                                     <!-- End .product-action -->
-                                    <div class="product-action product-action-dark"> <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a> </div>
+                                    <div class="product-action product-action-dark"> <a href="{{route('cart.store',$topproduct->product_slug ) }}" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> <a href="{{ url('productview/'.$topproduct->product_slug) }}" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a> </div>
                                     <!-- End .product-action -->
                                 </figure>
                                 <!-- End .product-media -->
@@ -818,7 +833,14 @@
                                 <a href="{{ url('productview/'.$tproduct->product_slug) }}"> <img src="{{asset('upload/product/'.$tproduct->product_image)}}" alt="Product image" class="product-image"> </a>
                                 <div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
                                 <!-- End .product-action -->
-                                <div class="product-action product-action-dark"> <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a> </div>
+                                <div class="product-action product-action-dark">
+                                    <a href="{{route('cart.store',$tproduct->product_slug ) }}" class="btn-product btn-cart" title="Add to cart">
+                                        <span>add to cart</span>
+                                    </a>
+                                    <a href="{{ url('productview/'.$tproduct->product_slug) }}" class="btn-product btn-quickview" title="Quick view">
+                                        <span>quick view</span>
+                                    </a>
+                                </div>
                                 <!-- End .product-action -->
                             </figure>
                             <!-- End .product-media -->
