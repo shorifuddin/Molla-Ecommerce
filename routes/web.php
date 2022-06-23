@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProducatCategoryController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RecycleController;
+use App\Http\Controllers\Admin\CuponController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Website\WebsiteController;
 use App\Http\Controllers\Website\CartController;
@@ -161,7 +162,19 @@ Route::get('product/restore', [ProductController::class, 'restore'])->name('prod
 Route::get('product/restoredata/{id}', [ProductController::class, 'restoredata'])->name('product.restoredata');
 Route::get('product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
 
-// <<===== PRODUCT ROUTE  LIST ======>>
+// <<===== CUPON ROUTE  LIST ======>>
+Route::get('cupon/add', [CuponController::class, 'add'])->name('cupon.add');
+Route::POST('cupon/submit', [CuponController::class, 'store'])->name('cupon.insert');
+Route::get('cupon/all', [CuponController::class, 'all'])->name('cupon.all');
+Route::get('cupon/view/{id}', [CuponController::class, 'view'])->name('cupon.view');
+Route::get('cupon/edit/{id}', [CuponController::class, 'edit'])->name('cupon.edit');
+Route::POST('cupon/update/{id}', [CuponController::class, 'update'])->name('cupon.update');
+Route::get('cupon/softdelete/{id}', [CuponController::class, 'softdelete'])->name('cupon.softdelete');
+Route::get('cupon/restore', [CuponController::class, 'restore'])->name('cupon.restore');
+Route::get('cupon/restoredata/{id}', [CuponController::class, 'restoredata'])->name('cupon.restoredata');
+Route::get('cupon/delete/{id}', [CuponController::class, 'delete'])->name('cupon.delete');
+
+// <<===== RECYLE ROUTE  LIST ======>>
 Route::get('recycle', [RecycleController::class, 'index'])->name('recycle');
 
 

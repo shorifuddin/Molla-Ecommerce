@@ -194,6 +194,27 @@
                         </ul>
                      </li>
                   @endif
+
+                  @if(Auth::user()->role=='1' || Auth::user()->role=='3' ||  Auth::user()->role=='4')
+                  <li class="has_sub">
+                     <a href="#" class="waves-effect"><i class=" md-loyalty"></i>
+                         <span> Cupon Info </span>
+                         <span class="pull-right"><i class="md md-add"></i></span>
+                     </a>
+                     <ul class="list-unstyled">
+                     @if(Auth::user()->role=='1' || Auth::user()->role=='4')
+                        <li><a href="{{ route('cupon.add') }}">ADD Cupon</a></li>
+                     @endif
+
+                        <li><a href="{{ route('cupon.all') }}">ALL Cupon</a></li>
+
+                     @if(Auth::user()->role=='1' )
+                        <li><a href="{{ route('cupon.restore') }}">Deleted Cupon</a></li>
+                     @endif
+                     </ul>
+                  </li>
+               @endif
+
                   @if(Auth::user()->role=='1' || Auth::user()->role=='3' ||  Auth::user()->role=='4')
                      <li class="has_sub">
                         <a href="#" class="waves-effect"><i class=" md-mms"></i>
