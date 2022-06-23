@@ -667,7 +667,7 @@
                                     @endif
 
                                     <a href="{{ url('productview/'.$catproducat->product_slug) }}"> <img src="{{asset('upload/product/'.$catproducat->product_image)}}" alt="Product image" class="product-image"> </a>
-                                    <div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
+                                    <div class="product-action-vertical"> <a href="{{ route('wishlist.store',$catproducat->product_slug) }}" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
                                     <!-- End .product-action -->
                                     <div class="product-action product-action-dark"> <a href="{{route('cart.store',$catproducat->product_slug ) }}" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> <a href="{{ url('productview/'.$allproducat->product_slug) }} class="btn-product btn-quickview" title="Quick view"><span>view</span></a> </div>
                                     <!-- End .product-action -->
@@ -773,7 +773,7 @@
                                     <span class="product-label label-circle label-sale">Top</span>
                                     @endif
                                     <a href="{{ url('productview/'.$topproduct->product_slug) }}"> <img src="{{asset('upload/product/'.$topproduct->product_image)}}" alt="Product image" class="product-image"> </a>
-                                    <div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
+                                    <div class="product-action-vertical"> <a href="{{ route('wishlist.store',$topproduct->product_slug) }}" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
                                     <!-- End .product-action -->
                                     <div class="product-action product-action-dark"> <a href="{{route('cart.store',$topproduct->product_slug ) }}" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a> <a href="{{ url('productview/'.$topproduct->product_slug) }}" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a> </div>
                                     <!-- End .product-action -->
@@ -842,7 +842,7 @@
                                 <span class="product-label label-circle label-sale">Top</span>
                                 @endif
                                 <a href="{{ url('productview/'.$tproduct->product_slug) }}"> <img src="{{asset('upload/product/'.$tproduct->product_image)}}" alt="Product image" class="product-image"> </a>
-                                <div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
+                                <div class="product-action-vertical"> <a href="{{ route('wishlist.store',$tproduct->product_slug) }}" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
                                 <!-- End .product-action -->
                                 <div class="product-action product-action-dark">
                                     <a href="{{route('cart.store',$tproduct->product_slug ) }}" class="btn-product btn-cart" title="Add to cart">
