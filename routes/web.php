@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\RecycleController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Website\WebsiteController;
 use App\Http\Controllers\Website\CartController;
+use App\Http\Controllers\Website\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ use App\Http\Controllers\Website\CartController;
 // })->middleware(['auth'])->name('dashboard');
 
 // <<===== WEBSITE ROUTE LIST ======>>
-Route::get('/', [WebsiteController::class, 'index']);
+Route::get('/', [WebsiteController::class, 'index'])->name('website');
 Route::get('shop', [WebsiteController::class, 'shop']);
 Route::get('product', [WebsiteController::class, 'product']);
 Route::get('blog', [WebsiteController::class, 'blog']);
@@ -48,6 +49,13 @@ Route::group(['prefix' => 'cart'], function() {
     Route::get('/',[ CartController::class, 'index'])->name('cart.index');
     Route::get('/{slug}',[ CartController::class, 'store'])->name('cart.store');
     Route::get('/delete/{id}',[ CartController::class, 'destroy'])->name('cart.destroy');
+});
+
+// <<===== WISHLIST ROUTE LIST ======>>
+Route::group(['prefix' => 'wishlist'], function() {
+    Route::get('/',[ WishlistController::class, 'index'])->name('wishlist.index');
+    Route::get('/{slug}',[ WishlistController::class, 'store'])->name('wishlist.store');
+    Route::get('/delete/{id}',[ WishlistController::class, 'destroy'])->name('wishlist.destroy');
 });
 // <<===== ADMIN ROUTE LIST ======>>
 Route::get('/dashboard', [AdminController::class, 'index']);

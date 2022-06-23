@@ -2,7 +2,7 @@
 @section('content')
 
         <main class="main">
-        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        	<div class="page-header text-center" style="background-image: url('{{ asset('content/website') }}/assets/images/page-header-bg.jpg')">
         		<div class="container">
         			<h1 class="page-title">Wishlist<span>Shop</span></h1>
         		</div><!-- End .container -->
@@ -31,21 +31,27 @@
 						</thead>
 
 						<tbody>
-							<tr>
+                            @foreach ($wishlists as $wishlist )
+                            @php
+                                $products = App\Models\Product::where('product_id',$wishlist->product_id)->get();
+                            @endphp
+                            @foreach ( $products as $product)
+
+                             <tr>
 								<td class="product-col">
 									<div class="product">
 										<figure class="product-media">
 											<a href="#">
-												<img src="assets/images/products/table/product-1.jpg" alt="Product image">
+												<img src="{{asset('upload/product/'.$product->product_image)}}" alt="Product image">
 											</a>
 										</figure>
 
 										<h3 class="product-title">
-											<a href="#">Beige knitted elastic runner shoes</a>
+											<a href="#">{{ $product->product_name }}</a>
 										</h3><!-- End .product-title -->
 									</div><!-- End .product -->
 								</td>
-								<td class="price-col">$84.00</td>
+								<td class="price-col"> ৳ {{ $product->product_price }}</td>
 								<td class="stock-col"><span class="in-stock">In stock</span></td>
 								<td class="action-col">
                                     <div class="dropdown">
@@ -60,50 +66,12 @@
                                       </div>
                                     </div>
 								</td>
-								<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+								<td class="remove-col"><a href="{{ route('wishlist.destroy',$product->product_slug) }}" class="btn-remove"><i class="icon-close"></i></a></td>
 							</tr>
-							<tr>
-								<td class="product-col">
-									<div class="product">
-										<figure class="product-media">
-											<a href="#">
-												<img src="assets/images/products/table/product-2.jpg" alt="Product image">
-											</a>
-										</figure>
+                            @endforeach
+                            @endforeach
 
-										<h3 class="product-title">
-											<a href="#">Blue utility pinafore denim dress</a>
-										</h3><!-- End .product-title -->
-									</div><!-- End .product -->
-								</td>
-								<td class="price-col">$76.00</td>
-								<td class="stock-col"><span class="in-stock">In stock</span></td>
-								<td class="action-col">
-									<button class="btn btn-block btn-outline-primary-2"><i class="icon-cart-plus"></i>Add to Cart</button>
-								</td>
-								<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
-							</tr>
-							<tr>
-								<td class="product-col">
-									<div class="product">
-										<figure class="product-media">
-											<a href="#">
-												<img src="assets/images/products/table/product-3.jpg" alt="Product image">
-											</a>
-										</figure>
 
-										<h3 class="product-title">
-											<a href="#">Orange saddle lock front chain cross body bag</a>
-										</h3><!-- End .product-title -->
-									</div><!-- End .product -->
-								</td>
-								<td class="price-col">$52.00</td>
-								<td class="stock-col"><span class="out-of-stock">Out of stock</span></td>
-								<td class="action-col">
-									<button class="btn btn-block btn-outline-primary-2 disabled">Out of Stock</button>
-								</td>
-								<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
-							</tr>
 						</tbody>
 					</table><!-- End .table table-wishlist -->
 	            	<div class="wishlist-share">

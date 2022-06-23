@@ -112,7 +112,7 @@
 		<!-- End .container -->
 	</div>
 	<!-- End .intro-section -->
-	<div class="container featured">
+	{{-- <div class="container featured">
 		<ul class="nav nav-pills nav-border-anim nav-big justify-content-center mb-3" role="tablist">
 			<li class="nav-item"> <a class="nav-link " id="products-featured-link" data-toggle="tab" href="#products-featured-tab" role="tab" aria-controls="products-featured-tab" aria-selected="false" >Featured</a> </li>
 			<li class="nav-item"> <a class="nav-link active" id="products-sale-link" data-toggle="tab" href="#products-sale-tab" role="tab" aria-controls="products-sale-tab" aria-selected="true">On Sale</a> </li>
@@ -182,7 +182,7 @@
                     </div>
                     <!-- End .product-body -->
                 </div>
-					<!-- End .product -->
+                <!-- End .product -->
                 @endforeach
 
 				</div>
@@ -222,7 +222,13 @@
                            <span class="product-label label-circle label-top">Sale</span>
 
 							<a href="{{ url('productview/'.$saledata->product_slug) }}"> <img src="{{asset('upload/product/'.$saledata->product_image)}}" alt="Product image" class="product-image"> </a>
-							<div class="product-action-vertical"> <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a> </div>
+							<div class="product-action-vertical"> </div>
+                            @if (Auth::check())
+                            <a href="{{ route('wishlist.store',$saledata->product_slug) }}" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                            @else
+                            @endif
+
+                            </div>
 							<!-- End .product-action -->
 							<div class="product-action product-action-dark">
                                  <a href="{{route('cart.store',$saledata->product_slug ) }}" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
@@ -324,8 +330,8 @@
 			<!-- .End .tab-pane -->
 		</div>
 		<!-- End .tab-content -->
-	</div>
-	<!-- End .container -->
+
+	<!-- End .container --> --}}
 	<div class="mb-7 mb-lg-11"></div>
 	<!-- End .mb-7 -->
 	<div class="container">
@@ -343,7 +349,9 @@
 								<p>Get <span class="text-dark font-weight-normal">FREE SHIPPING* & 5% rewards</span> on
 									<br>every order with Molla Theme rewards program</p>
 							</div>
-							<!-- End .cta-text --><a href="#" class="btn btn-primary btn-round"><span>Add to Cart for $50.00/yr</span><i class="icon-long-arrow-right"></i></a> </div>
+							<!-- End .cta-text -->
+                            <a href="#" class="btn btn-primary btn-round"><span>Add to Cart for $50.00/yr</span><i class="icon-long-arrow-right"></i></a>
+                        </div>
 						<!-- End .cta-content -->
 					</div>
 					<!-- End .col-xl-7 -->
@@ -576,10 +584,13 @@
                                     <a href="{{ url('productview/'.$allproducat->product_slug) }}">
                                         <img src="{{asset('upload/product/'.$allproducat->product_image)}}" alt="Product image" class="product-image">
                                     </a>
-                                    <div class="product-action-vertical">
-                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span>
+                                    @auth
+                                      <div class="product-action-vertical">
+                                        <a href="{{ route('wishlist.store',$allproducat->product_slug) }}" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span>
                                         </a>
                                     </div>
+                                    @endauth
+
                                     <!-- End .product-action -->
                                     <div class="product-action product-action-dark">
                                         <a href="{{route('cart.store',$allproducat->product_slug ) }}" class="btn-product btn-cart" title="Add to cart">

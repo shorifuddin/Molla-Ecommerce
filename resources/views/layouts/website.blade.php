@@ -77,7 +77,7 @@
 				<div class="container">
 					<div class="header-left">
 						<button class="mobile-menu-toggler"> <span class="sr-only">Toggle mobile menu</span> <i class="icon-bars"></i> </button>
-						<a href="index.html" class="logo"> <img src="{{asset('content/website')}}/assets/images/demos/demo-3/logo.png" alt="Molla Logo" width="105" height="25"> </a>
+						<a href="{{route('website')}}" class="logo"> <img src="{{asset('content/website')}}/assets/images/demos/demo-3/logo.png" alt="Molla Logo" width="105" height="25"> </a>
 					</div>
 					<!-- End .header-left -->
 					<div class="header-center">
@@ -111,15 +111,25 @@
 						</div>
 						<!-- End .compare-dropdown -->
 						<div class="wishlist">
-							<a href="wishlist.html" title="Wishlist">
-								<div class="icon"> <i class="icon-heart-o"></i> <span class="wishlist-count badge">3</span> </div>
+							<a href="{{ route('wishlist.index') }}" title="Wishlist">
+                                @php
+                                    $wishlist =  App\Models\Wishlist::where('wish_status',1)->get();
+                                    $wishlist_count =  App\Models\Wishlist::where('wish_status',1)->get()->count();
+                                @endphp
+								<div class="icon"> <i class="icon-heart-o"></i> <span class="wishlist-count badge">{{ $wishlist_count }} </span> </div>
 								<p>Wishlist</p>
+
 							</a>
 						</div>
 						<!-- End .compare-dropdown -->
 						<div class="dropdown cart-dropdown">
 							<a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-								<div class="icon"> <i class="icon-shopping-cart"></i> <span class="cart-count">2</span> </div>
+								<div class="icon">
+                                @php
+
+                                @endphp
+                                    <i class="icon-shopping-cart"></i> <span class="cart-count">2</span>
+                                </div>
 								<p>Cart</p>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right">
