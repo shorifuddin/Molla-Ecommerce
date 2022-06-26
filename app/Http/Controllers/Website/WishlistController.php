@@ -7,10 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\Wishlist;
+
 class WishlistController extends Controller{
 
     public function index(){
-        $wishlists = Wishlist::where('wish_status', 1)->get();
+        if(Auth::check()){
+            $auth_id = Auth::user()->id;
+        }else{
+            $auth_id = '';
+        }
+        $wishlists = Wishlist::where('wish_status', 1)->where('user_id',$auth_id)->get();
         return view('website.wishlist', compact('wishlists'));
     }
 
