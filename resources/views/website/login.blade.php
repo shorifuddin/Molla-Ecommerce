@@ -27,7 +27,7 @@
 							<div class="tab-content">
 							    <div class="tab-pane fade" id="signin-2" role="tabpanel" aria-labelledby="signin-tab-2">
 
-                                    <form method="POST" action="{{ route('login') }}">
+                                    <form method="get" action="{{ route('user_login_access') }}">
                                         @csrf
 										<div class="form-group">
 											<label  for="email" :value="__('Email')">Email address *</label>
@@ -74,7 +74,7 @@
 							    </div><!-- .End .tab-pane -->
 							    <div class="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
 
-                                    <form method="POST" action="{{ route('register') }}">
+                                    <form method="POST" action="{{ route('user_register_access') }}">
                                         @csrf
                                         <div class="form-group">
 											<label for="name" :value="__('Name')">Name *</label>

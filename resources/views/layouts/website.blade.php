@@ -60,7 +60,7 @@
                                     <li class="megamenu-container"> <a href="{{ route('logout') }}" >Log out</a></li>
 									@else
                                     <li><a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a></li>
-                                    <li class="megamenu-container"> <a href="" >Log in</a></li>
+                                    <li class="megamenu-container"> <a href="{{ route('user_login') }}" >Log in</a></li>
 									@endif
 
 								</ul>
@@ -113,12 +113,15 @@
 						<div class="wishlist">
 							<a href="{{ route('wishlist.index') }}" title="Wishlist">
                                 @php
-                                    if ($auth_id = Auth::user()->id) {
-                                    $wishlist =  App\Models\Wishlist::where('wish_status',1)->where('user_id',$auth_id)->get();
-                                    $wishlist_count =  App\Models\Wishlist::where('wish_status',1)->get()->count();
-                                   }else {
-                                    $wishlist_count = 0;
-                                   }
+
+                                //  if ($auth_id = Auth::user()->id) {
+                                //     $wishlist =  App\Models\Wishlist::where('wish_status',1)->where('user_id',$auth_id)->get();
+                                //     $wishlist_count =  App\Models\Wishlist::where('wish_status',1)->get()->count();
+                                //    }else {
+                                //     $wishlist_count = 0;
+                                //    }
+                                $wishlist =  App\Models\Wishlist::where('wish_status',1)->get();
+                                $wishlist_count =  App\Models\Wishlist::where('wish_status',1)->get()->count();
                                  @endphp
 								<div class="icon"> <i class="icon-heart-o"></i> <span class="wishlist-count badge">{{ $wishlist_count }} </span> </div>
 								<p>Wishlist</p>
@@ -453,7 +456,7 @@
 							<div class="tab-content" id="tab-content-5">
 								<div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
 
-                                    <form method="POST" action="{{ route('login') }}">
+                                    <form method="get" action="{{ route('user_login_access') }}">
                                         @csrf
 										<div class="form-group">
 											<label  for="email" :value="__('Email')">Email address *</label>
@@ -499,7 +502,7 @@
 								<!-- .End .tab-pane -->
 								<div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
 
-                                    <form method="POST" action="{{ route('register') }}">
+                                    <form method="POST" action="{{ route('user_register_access') }}">
                                         @csrf
                                         <div class="form-group">
 											<label for="name" :value="__('Name')">Name *</label>

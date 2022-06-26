@@ -44,7 +44,10 @@ Route::get('contact', [WebsiteController::class, 'contact']);
 Route::get('about', [WebsiteController::class, 'about']);
 Route::get('productview/{slug}', [WebsiteController::class, 'productview']);
 Route::get('cartitem', [WebsiteController::class, 'cartitem']);
-Route::get('website/login', [WebsiteController::class, 'login'])->name('website_login');
+// <<===== WEBSITE USER-LOGIN ROUTE LIST ======>>
+Route::get('website/login', [WebsiteController::class, 'login'])->name('user_login');
+Route::get('user_login', [WebsiteController::class, 'login_access'])->name('user_login_access');
+Route::get('user_register', [WebsiteController::class, 'register'])->name('user_register_access');
 
 // <<===== CART ROUTE LIST ======>>
 Route::group(['prefix' => 'cart'], function() {
