@@ -44,6 +44,7 @@ Route::get('contact', [WebsiteController::class, 'contact']);
 Route::get('about', [WebsiteController::class, 'about']);
 Route::get('productview/{slug}', [WebsiteController::class, 'productview']);
 Route::get('cartitem', [WebsiteController::class, 'cartitem']);
+Route::get('website/login', [WebsiteController::class, 'login'])->name('website_login');
 
 // <<===== CART ROUTE LIST ======>>
 Route::group(['prefix' => 'cart'], function() {

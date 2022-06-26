@@ -57,10 +57,10 @@
 									</li>
 									@if (Auth::check())
 									<li class="megamenu-container"> <a href="#" >My Account</a></li>
-                                    <li class="megamenu-container"> <a href="#" >Log out</a></li>
+                                    <li class="megamenu-container"> <a href="{{ route('logout') }}" >Log out</a></li>
 									@else
                                     <li><a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a></li>
-                                    <li class="megamenu-container"> <a href="{{ url('contact') }}" >Log in</a></li>
+                                    <li class="megamenu-container"> <a href="" >Log in</a></li>
 									@endif
 
 								</ul>
@@ -113,9 +113,13 @@
 						<div class="wishlist">
 							<a href="{{ route('wishlist.index') }}" title="Wishlist">
                                 @php
-                                    $wishlist =  App\Models\Wishlist::where('wish_status',1)->get();
+                                    if ($auth_id = Auth::user()->id) {
+                                    $wishlist =  App\Models\Wishlist::where('wish_status',1)->where('user_id',$auth_id)->get();
                                     $wishlist_count =  App\Models\Wishlist::where('wish_status',1)->get()->count();
-                                @endphp
+                                   }else {
+                                    $wishlist_count = 0;
+                                   }
+                                 @endphp
 								<div class="icon"> <i class="icon-heart-o"></i> <span class="wishlist-count badge">{{ $wishlist_count }} </span> </div>
 								<p>Wishlist</p>
 
@@ -126,17 +130,16 @@
 							<a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
 								<div class="icon">
                                 @php
-
+                                    $allcart = Cart::getContent();
+                                    $cart_count = Cart::getContent()->count();
                                 @endphp
-                                    <i class="icon-shopping-cart"></i> <span class="cart-count">2</span>
+                                    <i class="icon-shopping-cart"></i> <span class="cart-count">{{ $cart_count }}</span>
                                 </div>
 								<p>Cart</p>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right">
 								<div class="dropdown-cart-products">
-                                    @php
-                                        $allcart = Cart::getContent();
-                                    @endphp
+
                                     @foreach ( $allcart as $cartitem)
                                     <div class="product">
 										<div class="product-cart-details">
@@ -449,24 +452,34 @@
 							</ul>
 							<div class="tab-content" id="tab-content-5">
 								<div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-									<form action="#">
+
+                                    <form method="POST" action="{{ route('login') }}">
+                                        @csrf
 										<div class="form-group">
-											<label for="singin-email">Username or email address *</label>
-											<input type="text" class="form-control" id="singin-email" name="singin-email" required> </div>
+											<label  for="email" :value="__('Email')">Email address *</label>
+											<input type="text" class="form-control" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus> </div>
 										<!-- End .form-group -->
 										<div class="form-group">
-											<label for="singin-password">Password *</label>
-											<input type="password" class="form-control" id="singin-password" name="singin-password" required> </div>
+											<label for="password" :value="__('Password')" >Password *</label>
+											<input class="form-control" id="password" type="password" name="password"
+                                            required autocomplete="current-password"> </div>
 										<!-- End .form-group -->
 										<div class="form-footer">
 											<button type="submit" class="btn btn-outline-primary-2"> <span>LOG IN</span> <i class="icon-long-arrow-right"></i> </button>
 											<div class="custom-control custom-checkbox">
 												<input type="checkbox" class="custom-control-input" id="signin-remember">
-												<label class="custom-control-label" for="signin-remember">Remember Me</label>
+												<label class="custom-control-label" for="signin-remember">
+                                                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                                                </label>
 											</div>
-											<!-- End .custom-checkbox --><a href="#" class="forgot-link">Forgot Your Password?</a> </div>
+											<!-- End .custom-checkbox -->
+                                            @if (Route::has('password.request'))
+                                            <a href="{{ route('password.request') }}" class="forgot-link">Forgot Your Password?</a>
+                                             @endif
+                                             </div>
 										<!-- End .form-footer -->
 									</form>
+
 									<div class="form-choice">
 										<p class="text-center">or sign in with</p>
 										<div class="row">
@@ -485,25 +498,35 @@
 								</div>
 								<!-- .End .tab-pane -->
 								<div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-									<form action="#">
+
+                                    <form method="POST" action="{{ route('register') }}">
+                                        @csrf
+                                        <div class="form-group">
+											<label for="name" :value="__('Name')">Name *</label>
+											<input  class="form-control" id="name" type="text" name="name" :value="old('name')" required autofocus>
+                                        </div>
 										<div class="form-group">
-											<label for="register-email">Your email address *</label>
-											<input type="email" class="form-control" id="register-email" name="register-email" required> </div>
+											<label for="email" :value="__('Email')" >Your email address *</label>
+											<input class="form-control" id="email" type="email" name="email" :value="old('email')" required>
+                                        </div>
 										<!-- End .form-group -->
 										<div class="form-group">
-											<label for="register-password">Password *</label>
-											<input type="password" class="form-control" id="register-password" name="register-password" required> </div>
+											<label for="password" :value="__('Password')">Password *</label>
+											<input type="password" class="form-control" id="password" name="password" required autocomplete="new-password" >
+                                         </div>
+                                         <div class="form-group">
+											<label for="password_confirmation" :value="__('Confirm Password')" >Confrim Password *</label>
+											<input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                                         </div>
 										<!-- End .form-group -->
 										<div class="form-footer">
 											<button type="submit" class="btn btn-outline-primary-2"> <span>SIGN UP</span> <i class="icon-long-arrow-right"></i> </button>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="register-policy" required>
-												<label class="custom-control-label" for="register-policy">I agree to the <a href="#">privacy policy</a> *</label>
-											</div>
+
 											<!-- End .custom-checkbox -->
 										</div>
 										<!-- End .form-footer -->
 									</form>
+
 									<div class="form-choice">
 										<p class="text-center">or sign in with</p>
 										<div class="row">

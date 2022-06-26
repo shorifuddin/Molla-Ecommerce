@@ -69,6 +69,9 @@
 								<td class="remove-col"><a href="{{ route('wishlist.destroy',$product->product_slug) }}" class="btn-remove"><i class="icon-close"></i></a></td>
 							</tr>
                             @endforeach
+                            <tr class="text-center">
+                                <h3>Wishlist Emty</h3>
+                            </tr>
                             @endforeach
 
 

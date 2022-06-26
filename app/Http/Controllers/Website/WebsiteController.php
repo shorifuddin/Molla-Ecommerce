@@ -34,6 +34,10 @@ class WebsiteController extends Controller
         return view('website.contact');
     }
 
+    public function login(){
+        return view('website.login');
+    }
+
     public function productview($slug){
         $data=Product::where('product_status',1)->where('product_slug',$slug)->first();
         return view('website.product',compact('data'));

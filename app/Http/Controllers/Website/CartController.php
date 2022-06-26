@@ -20,7 +20,7 @@ class CartController extends Controller{
             'id' => $products->product_id, // inique row ID
             'name' => $products->product_name,
             'price' => $products->product_price,
-            'quantity' => $products->product_quantity,
+            'quantity' => 1,
             'attributes' => [
                 'image' => $products->product_image,
             ]
